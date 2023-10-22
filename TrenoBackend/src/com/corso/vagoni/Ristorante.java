@@ -7,9 +7,9 @@ public abstract class Ristorante extends VagoneGenerico {
 	private String stelleRistorante;
 	private String menu;
 
-	public Ristorante(String stringId, String marca, Integer peso, Integer lunghezza, Colore colore,
+	public Ristorante(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Colore colore,
 			String stelleRistorante, String menu) {
-		super(stringId, marca, peso, lunghezza, colore);
+		super(id, stringId, marca, peso, lunghezza, colore);
 		this.stelleRistorante = stelleRistorante;
 		this.menu = menu;
 	}

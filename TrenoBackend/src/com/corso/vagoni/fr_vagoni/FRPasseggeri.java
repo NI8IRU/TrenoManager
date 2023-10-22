@@ -5,9 +5,9 @@ import com.corso.vagoni.Passeggeri;
 
 public class FRPasseggeri extends Passeggeri {
 
-	public FRPasseggeri(String stringId, String marca, Integer peso, Integer lunghezza, Colore colore,
+	public FRPasseggeri(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Colore colore,
 			Integer numeroMassimoPasseggeri, Integer numeroPasseggeri) {
-		super(stringId, marca, peso, lunghezza, colore, numeroMassimoPasseggeri, numeroPasseggeri);
+		super(id, stringId, marca, peso, lunghezza, colore, numeroMassimoPasseggeri, numeroPasseggeri);
 	}
 
 }

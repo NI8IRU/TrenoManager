@@ -3,20 +3,36 @@ package com.corso.vagoni;
 import com.corso.Colore;
 
 public abstract class VagoneGenerico implements Vagone {
-
+	
+	private Integer id;
 	private String stringId;
-	private String marca;
-	private Integer peso;
-	private Integer lunghezza;
+	private Integer marca;
+	private Double peso;
+	private Double lunghezza;
 	private Colore colore;
 
-	public VagoneGenerico(String stringId, String marca, Integer peso, Integer lunghezza, Colore colore) {
+	public VagoneGenerico(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Colore colore) {
+		this.id = id;
 		this.stringId = stringId;
 		this.marca = marca;
 		this.peso = peso;
 		this.lunghezza = lunghezza;
 		this.colore = colore;
 	}
+	
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
 
 	public String getStringId() {
 		return stringId;
@@ -26,19 +42,19 @@ public abstract class VagoneGenerico implements Vagone {
 		this.stringId = stringId;
 	}
 
-	public Integer getPeso() {
+	public Double getPeso() {
 		return peso;
 	}
 
-	public void setPeso(Integer peso) {
+	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
 
-	public Integer getLunghezza() {
+	public Double getLunghezza() {
 		return lunghezza;
 	}
 
-	public void setLunghezza(Integer lunghezza) {
+	public void setLunghezza(Double lunghezza) {
 		this.lunghezza = lunghezza;
 	}
 
@@ -50,11 +66,11 @@ public abstract class VagoneGenerico implements Vagone {
 		this.colore = colore;
 	}
 
-	public String getMarca() {
+	public Integer getMarca() {
 		return marca;
 	}
 
-	public void setMarca(String marca) {
+	public void setMarca(Integer marca) {
 		this.marca = marca;
 	}
 

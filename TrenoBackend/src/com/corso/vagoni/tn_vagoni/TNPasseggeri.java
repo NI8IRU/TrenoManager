@@ -5,9 +5,9 @@ import com.corso.vagoni.Passeggeri;
 
 public class TNPasseggeri extends Passeggeri {
 
-	public TNPasseggeri(String stringId, String marca, Integer peso, Integer lunghezza, Colore colore,
+	public TNPasseggeri(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Colore colore,
 			Integer numeroMassimoPasseggeri, Integer numeroPasseggeri) {
-		super(stringId, marca, peso, lunghezza, colore, numeroMassimoPasseggeri, numeroPasseggeri);
+		super(id, stringId, marca, peso, lunghezza, colore, numeroMassimoPasseggeri, numeroPasseggeri);
 	}
 
 }

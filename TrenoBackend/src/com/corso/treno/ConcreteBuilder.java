@@ -12,7 +12,7 @@ public class ConcreteBuilder extends TrenoBuilder {
 	}
 
 	@Override
-	protected String getMarca() {
+	protected Integer getMarca() {
 		return vf.getMarca();
 	}
 

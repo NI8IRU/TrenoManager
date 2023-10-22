@@ -8,9 +8,9 @@ public abstract class Locomotiva extends VagoneGenerico {
 	private Integer carburanteMassimo;
 	private Integer carburanteAttuale;
 
-	public Locomotiva(String stringId, String marca, Integer peso, Integer lunghezza, Colore colore,
+	public Locomotiva(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Colore colore,
 			Integer potenzaMotore, Integer carburanteMassimo, Integer carburanteAttuale) {
-		super(stringId, marca, peso, lunghezza, colore);
+		super(id, stringId, marca, peso, lunghezza, colore);
 		this.potenzaMotore = potenzaMotore;
 		this.carburanteMassimo = carburanteMassimo;
 		this.carburanteAttuale = carburanteAttuale;

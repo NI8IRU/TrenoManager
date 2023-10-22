@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "CargoDTO" table = "cargo">
+      
+      <id name = "id" type = "int" column = "id">
+         <generator class="native"/>
+      </id>
+      
+      <property name = "marca" column = "id_marca" type = "int"/>
+      <property name = "stringId" column = "char_vagone" type = "string"/>
+      <property name = "peso" column = "peso" type = "double"/>
+      <property name = "lunghezza" column = "lunghezza" type = "double"/>
+      <property name = "numeroMassimoPacchi" column = "numero_max_pacchi" type = "int"/>
+      <property name = "colore" column = "colore" type = "string"/>
+      
+   </class>
+</hibernate-mapping>

@@ -8,9 +8,9 @@ public abstract class Passeggeri extends VagoneGenerico {
 	private Integer numeroPasseggeri;
 	private Integer numeroFinestre;
 
-	public Passeggeri(String stringId, String marca, Integer peso, Integer lunghezza, Colore colore,
+	public Passeggeri(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Colore colore,
 			Integer numeroMassimoPasseggeri, Integer numeroPasseggeri) {
-		super(stringId, marca, peso, lunghezza, colore);
+		super(id, stringId, marca, peso, lunghezza, colore);
 		this.numeroMassimoPasseggeri = numeroMassimoPasseggeri;
 		this.numeroPasseggeri = numeroPasseggeri;
 		numeroFinestre = numeroMassimoPasseggeri / 2;

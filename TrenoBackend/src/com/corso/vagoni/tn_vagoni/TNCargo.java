@@ -5,9 +5,9 @@ import com.corso.vagoni.Cargo;
 
 public class TNCargo extends Cargo {
 
-	public TNCargo(String stringId, String marca, Integer peso, Integer lunghezza, Colore colore,
+	public TNCargo(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Colore colore,
 			Integer numeroMassimoPacchi, Integer numeroPacchi) {
-		super(stringId, marca, peso, lunghezza, colore, numeroMassimoPacchi, numeroPacchi);
+		super(id, stringId, marca, peso, lunghezza, colore, numeroMassimoPacchi, numeroPacchi);
 	}
 
 }

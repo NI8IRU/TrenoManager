@@ -6,7 +6,8 @@ import com.corso.vagoni.Vagone;
 
 public class Treno {
 
-	private String marca;
+	private Integer id;
+	private Integer marca;
 	private List<Vagone> treno;
 
 	public Treno() {
@@ -25,12 +26,20 @@ public class Treno {
 		treno.remove(v);
 	}
 
-	public String getMarca() {
+	public Integer getMarca() {
 		return marca;
 	}
 
-	public void setMarca(String marca) {
+	public void setMarca(Integer marca) {
 		this.marca = marca;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }
