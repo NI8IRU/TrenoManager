@@ -21,6 +21,7 @@
 		<mapping resource = "ristorante.hbm.xml"/>
 		<mapping resource = "cargo.hbm.xml"/>
 		<mapping resource = "treno.hbm.xml"/>
+		<mapping resource = "utente.hbm.xml"/>
 		
 	</session-factory>
 </hibernate-configuration>

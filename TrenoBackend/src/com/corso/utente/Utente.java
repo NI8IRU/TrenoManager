@@ -6,13 +6,14 @@ import java.util.Set;
 
 import com.corso.treno.Treno;
 import com.corso.dao.Bean;
+import com.corso.dto.TrenoDTO;
 
 public class Utente implements Bean{
 	
 	private int id;
 	private String username;
 	private String password;
-	private List<Treno> listaTreni;
+	private List<TrenoDTO> listaTreni;
 	private Set<Ruolo> ruoli = new HashSet<>();
 	
 	
@@ -34,10 +35,10 @@ public class Utente implements Bean{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public List<Treno> getListaTreni() {
+	public List<TrenoDTO> getListaTreni() {
 		return listaTreni;
 	}
-	public void setListaTreni(List<Treno> listaTreni) {
+	public void setListaTreni(List<TrenoDTO> listaTreni) {
 		this.listaTreni = listaTreni;
 	}
 	public Set<Ruolo> getRuoli() {
@@ -59,7 +60,7 @@ public class Utente implements Bean{
 		this.ruoli = ruoli;
 	}
 	
-	public Utente(String username, String password, Set<Ruolo> ruoli, List<Treno> listaTreni) {
+	public Utente(String username, String password, Set<Ruolo> ruoli, List<TrenoDTO> listaTreni) {
 		super();
 		this.username = username;
 		this.password = password;

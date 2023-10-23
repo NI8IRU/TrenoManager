@@ -13,7 +13,7 @@
 	<list name="listaTreni" cascade="all">
       	<key column="utenteId"></key>
       	<index column="type" type="int"/>
-      	<one-to-many class="com.corso.treno.Treno"/>
+      	<one-to-many class="com.corso.dto.TrenoDTO"/>
       </list>
 	
         <!-- Definizione della relazione many-to-many con Role -->

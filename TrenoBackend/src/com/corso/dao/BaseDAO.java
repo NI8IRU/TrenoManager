@@ -4,12 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-
-import com.corso.treno.Treno;
-import com.corso.vagoni.Vagone;
-
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+
 
 import java.util.List;
 

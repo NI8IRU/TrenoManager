@@ -6,7 +6,7 @@ import java.util.List;
 import com.corso.dao.Bean;
 import com.corso.dao.UtenteDAO;
 import com.corso.dao.UtenteDAOImpl;
-import com.corso.treno.Treno;
+import com.corso.dto.TrenoDTO;
 import com.corso.utente.Utente;
 
 
@@ -14,12 +14,12 @@ public class UtenteService {
 	
 	private UtenteDAO dao = new UtenteDAOImpl();
 
-	public void creaAdmin(String username, String password,  List<Treno> listaTreni) {
+	public void creaAdmin(String username, String password,  List<TrenoDTO> listaTreni) {
 		Integer id = dao.createAdmin(username, password, listaTreni);
 		System.out.println("Creatol'admin con id: " + id);
 	}
 	
-	public void creaUtente(String username, String password,  List<Treno> listaTreni) {
+	public void creaUtente(String username, String password,  List<TrenoDTO> listaTreni) {
 		Integer id = dao.createUtente(username, password, listaTreni);
 		System.out.println("Creatol'utente con id: " + id);
 	}

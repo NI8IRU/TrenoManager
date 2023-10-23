@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import com.corso.treno.Treno;
+import com.corso.dto.TrenoDTO;
 import com.corso.utente.Ruolo;
 import com.corso.utente.Utente;
 
@@ -105,8 +105,8 @@ public class UtenteDAOImpl extends BaseDAO implements UtenteDAO{
 		      return ruolo;
 		   } 
 	
-
-	public Integer createUtente(String username, String password,  List<Treno> listaTreni){
+	@Override
+	public Integer createUtente(String username, String password,  List<TrenoDTO> listaTreni){
 		  Utente utente = null; 
 		  Session session = factory.openSession();
 	      Transaction tx = null;
@@ -137,7 +137,8 @@ public class UtenteDAOImpl extends BaseDAO implements UtenteDAO{
 	      return utenteID;
 	   }
 	
-	public Integer createAdmin(String username, String password, List<Treno> listaTreni){
+	@Override
+	public Integer createAdmin(String username, String password, List<TrenoDTO> listaTreni){
 		  Utente utente = null; 
 		  Session session = factory.openSession();
 	      Transaction tx = null;
@@ -171,6 +172,6 @@ public class UtenteDAOImpl extends BaseDAO implements UtenteDAO{
 	public List<Bean> findAll(String classe){
 		return super.findAll(classe);
 	}
-	
+
 
 }
