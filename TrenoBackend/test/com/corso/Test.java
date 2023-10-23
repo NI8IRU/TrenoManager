@@ -1,5 +1,6 @@
 package com.corso;
 
+import com.corso.dao.Bean;
 import com.corso.eccezioni.TrenoIrregolareException;
 import com.corso.treno.ConcreteBuilder;
 import com.corso.treno.Treno;
@@ -24,5 +25,8 @@ public class Test {
 		for (Vagone vagone : treno.getTreno()) {
 			System.out.println(vagone);
 		}
+		
+		Bean treno22 = new Treno();
+		System.out.println(treno22.getClass());
 	}
 }

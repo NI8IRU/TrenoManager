@@ -2,9 +2,11 @@ package com.corso.treno;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.corso.dao.Bean;
 import com.corso.vagoni.Vagone;
 
-public class Treno {
+public class Treno implements Bean{
 
 	private Integer id;
 	private Integer marca;
