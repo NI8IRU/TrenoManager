@@ -8,6 +8,10 @@ public abstract class VagoneGenericoDTO {
     private Double peso;
     private Double lunghezza;
     
+    public VagoneGenericoDTO() {
+    	
+    }
+    
 	public VagoneGenericoDTO(Integer id, String stringId, Integer marca, Double peso, Double lunghezza) {
 		this.id = id;
 		this.stringId = stringId;

@@ -5,6 +5,10 @@ public class PasseggeriDTO extends VagoneGenericoDTO{
     private Integer numeroMassimoPasseggeri;
     private Integer numeroFinestre;
     private String colore;
+    
+    public PasseggeriDTO() {
+    	
+    }
 
     public PasseggeriDTO(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Integer numeroMassimoPasseggeri, String colore, Integer numeroFinestre) {
     	super(id, stringId, marca, peso, lunghezza);

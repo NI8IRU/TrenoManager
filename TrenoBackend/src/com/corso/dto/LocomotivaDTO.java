@@ -5,6 +5,10 @@ public class LocomotivaDTO extends VagoneGenericoDTO{
     private Integer potenzaMotore;
     private Integer carburanteMassimo;
     private String colore;
+    
+    public LocomotivaDTO(){
+    	
+    }
 
     public LocomotivaDTO(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Integer potenzaMotore, Integer carburanteMassimo, String colore) {
     	super(id, stringId, marca, peso, lunghezza);

@@ -5,6 +5,10 @@ public class RistoranteDTO extends VagoneGenericoDTO{
     private String stelleRistorante;
     private String menu;
     private String colore;
+    
+    public RistoranteDTO() {
+    	
+    }
 
     public RistoranteDTO(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, String stelleRistorante, String menu, String colore) {
     	super(id, stringId, marca, peso, lunghezza);

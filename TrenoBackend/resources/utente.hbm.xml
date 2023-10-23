@@ -17,16 +17,16 @@
       </list>
 	
         <!-- Definizione della relazione many-to-many con Role -->
-        <set name="ruoli" table="utenti_ruoli">
-            <key column="utente_id" />
-            <many-to-many column="ruolo_id" class="com.corso.utente.Ruolo" />
+        <set name="ruoli" table="joining_utente_ruolo">
+            <key column="id_utente" />
+            <many-to-many column="id_ruolo" class="com.corso.utente.Ruolo" />
         </set>
     </class>
 	
-	<class name="com.corso.utente.Ruolo" table="Ruoli">
+	<class name="com.corso.utente.Ruolo" table="ruoli">
     	<id name="id" type="int" column="id">
        		<generator class="increment" />
     	</id>
-    	<property name = "ruolo" column = "tipo_ruolo" type = "string" />
+    	<property name = "ruoli" column = "tipo_ruolo" type = "string" />
 	</class>
 </hibernate-mapping>

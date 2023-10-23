@@ -5,6 +5,10 @@ public class CargoDTO extends VagoneGenericoDTO{
     private Integer numeroMassimoPacchi;
     private String colore;
 
+    public CargoDTO() {
+    	
+    }
+    
     public CargoDTO(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Integer numeroMassimoPacchi, String colore) {
     	super(id, stringId, marca, peso, lunghezza);
         this.numeroMassimoPacchi = numeroMassimoPacchi;

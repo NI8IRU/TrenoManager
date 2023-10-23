@@ -8,6 +8,11 @@ public class TrenoDTO {
     private Integer idUtente;
     private String composizioneTrenoString;
     private Date dataCreazione;
+    
+    public TrenoDTO() {
+    	
+    }
+    
 
     
 
