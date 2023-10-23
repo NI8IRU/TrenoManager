@@ -4,7 +4,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-   <class name = "CargoDTO" table = "cargo">
+   <class name = "com.corso.dto.CargoDTO" table = "cargo">
       
       <id name = "id" type = "int" column = "id">
          <generator class="native"/>

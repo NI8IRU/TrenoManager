@@ -4,11 +4,11 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-   <class name="com.corso.utente.Utente" table="users">
+   <class name="com.corso.utente.Utente" table="utenti">
         <id name = "id" type = "int" column = "id">
          <generator class="increment"/>
       </id>
-	<property name = "username" column = "username" type = "string" unique="true"/>
+	<property name = "username" column = "nome" type = "string" unique="true"/>
 	<property name = "password" column = "password" type = "string" />
 	<list name="listaTreni" cascade="all">
       	<key column="utenteId"></key>
