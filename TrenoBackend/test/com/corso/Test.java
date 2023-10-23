@@ -27,6 +27,6 @@ public class Test {
 		}
 		
 		Bean treno22 = new Treno();
-		System.out.println(treno22.getClass());
+		System.out.println(treno22);
 	}
 }
