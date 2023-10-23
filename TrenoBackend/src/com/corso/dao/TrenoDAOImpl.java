@@ -1,5 +1,7 @@
 package com.corso.dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -52,7 +54,9 @@ public class TrenoDAOImpl extends BaseDAO implements TrenoDAO{
 	}
 
 
-	
+	public List<Bean> findAll(String classe){
+		return super.findAll(classe);
+	}
 
 //	   public void deleteById(int id) {
 //		   super.deleteById(id);

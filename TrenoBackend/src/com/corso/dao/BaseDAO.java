@@ -3,12 +3,16 @@ package com.corso.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import com.corso.treno.Treno;
 import com.corso.vagoni.Vagone;
 
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
+import java.util.List;
+
 import org.hibernate.HibernateException;
 
 public abstract class BaseDAO {
@@ -27,12 +31,12 @@ public abstract class BaseDAO {
 	   protected Integer create(Bean bean){
 	      Session session = factory.openSession();
 	      Transaction tx = null;
-	      Integer employeeID = null;
+	      Integer beanID = null;
 	      
 	      try {
 	         tx = session.beginTransaction();
 	         
-	         employeeID = (Integer) session.save(bean);
+	         beanID = (Integer) session.save(bean);
 	         
 	         tx.commit();
 	      } catch (HibernateException e) {
@@ -41,7 +45,7 @@ public abstract class BaseDAO {
 	      } finally {
 	         session.close(); 
 	      }
-	      return employeeID;
+	      return beanID;
 	   }
 	   
 	   
@@ -126,5 +130,32 @@ public abstract class BaseDAO {
 		      return bean;
 		   } 
 	    
+	    
+	    public List<Bean> findAll(String className) {
+	        Session session = factory.openSession();
+	        Transaction tx = null;
+	        List<Bean> beanList = null;
+	        try {
+	            tx = session.beginTransaction();
+
+	            String hql = "FROM " + className; // Usa il nome della classe dinamicamente
+	            Query<Bean> query = session.createQuery(hql, Bean.class);
+
+	            beanList = query.list();
+	            tx.commit();
+	        } catch (HibernateException e) {
+	            if (tx != null) tx.rollback();
+	            e.printStackTrace();
+	        } finally {
+	            session.close();
+	        }
+	        return beanList;
+	    }
+	    
+
+
+
+
+
 }
 

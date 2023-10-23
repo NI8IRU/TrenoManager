@@ -15,4 +15,5 @@ public interface UtenteDAO {
 	public Utente findById(Integer id);
 	public Utente findUtenteByUsername(String username);
 	public Ruolo findRuoloByTipoRuolo(String ruolo);
+	public List<Bean> findAll(String classe);
 }

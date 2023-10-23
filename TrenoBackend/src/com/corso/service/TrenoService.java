@@ -1,5 +1,8 @@
 package com.corso.service;
 
+import java.util.List;
+
+import com.corso.dao.Bean;
 import com.corso.dao.TrenoDAO;
 import com.corso.dao.TrenoDAOImpl;
 import com.corso.treno.Treno;
@@ -27,5 +30,9 @@ public class TrenoService {
 		System.out.println("Il treno con id" + id + "è stato trovato");
 		return dao.findById(id);
 		
+	}
+	
+	public List<Bean> findAll(String classe){
+		return dao.findAll(classe);
 	}
 }

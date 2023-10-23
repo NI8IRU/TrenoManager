@@ -3,6 +3,7 @@ package com.corso.service;
 
 import java.util.List;
 
+import com.corso.dao.Bean;
 import com.corso.dao.UtenteDAO;
 import com.corso.dao.UtenteDAOImpl;
 import com.corso.treno.Treno;
@@ -41,5 +42,9 @@ public class UtenteService {
 	public Utente findByUsername(String username) {
 		System.out.println("L'utente con username" + username + "è stato trovato");
 		return dao.findUtenteByUsername(username);
+	}
+	
+	public List<Bean> findAll(String classe){
+		return dao.findAll(classe);
 	}
 }
