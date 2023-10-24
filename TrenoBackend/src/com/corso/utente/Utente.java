@@ -1,5 +1,6 @@
 package com.corso.utente;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,7 +9,7 @@ import com.corso.treno.Treno;
 import com.corso.dao.Bean;
 import com.corso.dto.TrenoDTO;
 
-public class Utente implements Bean{
+public class Utente implements Bean {
 	
 	private int id;
 	private String username;

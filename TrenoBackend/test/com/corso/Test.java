@@ -53,7 +53,6 @@ public class Test {
 	         throw new ExceptionInInitializerError(ex); 
 		}
 		
-		UtenteService utenteService = new UtenteService();
-		utenteService.creaAdmin("Test", "password", list);
+
 	}
 }

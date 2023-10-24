@@ -27,6 +27,6 @@
     	<id name="id" type="int" column="id">
        		<generator class="increment" />
     	</id>
-    	<property name = "ruoli" column = "tipo_ruolo" type = "string" />
+    	<property name = "ruolo" column = "tipo_ruolo" type = "string" />
 	</class>
 </hibernate-mapping>
