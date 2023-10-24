@@ -18,13 +18,12 @@ questa è la home
 
 
 <% 
-     for (int i = 0; i<10; i++ ) {
+     for (int i = 0; i < 10; i++ ) {
 %>
    <p> paragrafo generato da codice java <%=i%> </p>
  <%    
      }
 %>
-
-
+	
 </body>
 </html>

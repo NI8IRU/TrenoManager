@@ -16,7 +16,7 @@ public class TrenoController {
 		return "home";
 	}
 	
-	@GetMapping("insert")
+	@GetMapping("crea")
 	public String insert(@RequestParam String sigla, Model model ) {
 		System.out.println("creo un treno con sigla " + sigla); 
 		String message  =""; 
