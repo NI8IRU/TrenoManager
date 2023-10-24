@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration // qui si creano i bean per Spring core
 @EnableWebMvc  // indica che � una applicazioen web
-@ComponentScan(basePackages={"com.corso.spring.web.controller"})
+
 
 //@Import({ Beans.class })
 

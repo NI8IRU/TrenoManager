@@ -3,13 +3,15 @@ package com.corso.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.corso.dao.Bean;
 import com.corso.dao.UtenteDAO;
 import com.corso.dao.UtenteDAOImpl;
 import com.corso.dto.TrenoDTO;
 import com.corso.utente.Utente;
 
-
+@Component
 public class UtenteService {
 	
 	private UtenteDAO dao = new UtenteDAOImpl();
@@ -35,7 +37,7 @@ public class UtenteService {
 		dao.delete(utente);
 		System.out.println("L'utente: " + utente + " è stato correttamente eliminato");
 	}
-	//commento
+
 	public Utente findById(int id) {
 		System.out.println("L'utente con id" + id + "è stato trovato");
 		return dao.findById(id);
