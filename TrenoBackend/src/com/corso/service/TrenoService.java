@@ -2,11 +2,14 @@ package com.corso.service;
 
 import java.util.List;
 
+import org.springframework.context.annotation.ComponentScan;
+
 import com.corso.dao.Bean;
 import com.corso.dao.TrenoDAO;
 import com.corso.dao.TrenoDAOImpl;
 import com.corso.treno.Treno;
 
+@ComponentScan("com.corso.spring.web.controller")
 public class TrenoService {
 	
 	private TrenoDAO dao = new TrenoDAOImpl();
