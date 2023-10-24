@@ -59,19 +59,7 @@ public class Test {
 	         throw new ExceptionInInitializerError(ex); 
 		}
 		
-		//creo un istanza di questa classe in modo tale da poter usare il metodo per creare i ruoli
-		Test test = new Test();
-		test.addRuoli();
-		
-		
-		UtenteService utenteService = new UtenteService();
-//		utenteService.creaUtente("utente2", "password", list);
-		
-		TrenoService trenoService = new TrenoService();
-		System.out.println(trenoService.findAll());
-		
-		System.out.println(utenteService.findAll());
-		
+
 	}
 	
 	public void addRuoli() {
