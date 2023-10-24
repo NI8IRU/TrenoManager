@@ -3,7 +3,7 @@
   "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
   "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
-<hibernate-configuration>
+<!-- <hibernate-configuration>
 	<session-factory>
 		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://localhost/trenodb</property>
@@ -24,4 +24,30 @@
 		<mapping resource = "utente.hbm.xml"/>
 		
 	</session-factory>
+</hibernate-configuration> -->
+
+<hibernate-configuration>
+  <session-factory>
+    <!-- Parametri per JDBC -->
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/GruppoIDM16DB</property>
+    <property name="hibernate.connection.username">postgres</property>
+    <property name="hibernate.connection.password">database</property>
+    <!-- Fine parametri per JDBC -->
+    
+    <property name="hibernate.hbm2ddl.auto">update</property> <!-- Questa opzione aggiorna automaticamente il database -->
+    
+    <property name="hibernate.show_sql">true</property>
+    
+    <!-- Altre configurazioni specifiche dell'applicazione Hibernate -->
+    <mapping resource = "treno.hbm.xml"/>
+    <mapping resource = "cargo.hbm.xml"/>
+    <mapping resource = "locomotiva.hbm.xml"/>
+    <mapping resource = "passeggeri.hbm.xml"/>
+    <mapping resource = "ristorante.hbm.xml"/>
+    <mapping resource = "utente.hbm.xml"/>
+   
+    
+  </session-factory>
 </hibernate-configuration>

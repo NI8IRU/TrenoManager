@@ -11,7 +11,7 @@
       </id>
       
       <property name = "marca" column = "id_marca" type = "int"/>
-      <property name = "idUtente" column = "id_utente" type = "int"/>
+      
       <property name = "composizioneTrenoString" column = "composizione_treno" type = "string"/>
       <property name = "dataCreazione" column = "data_creazione" type = "date"/>
       

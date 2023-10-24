@@ -19,6 +19,8 @@ public class UtenteService {
 		System.out.println("Creatol'admin con id: " + id);
 	}
 	
+	
+	
 	public void creaUtente(String username, String password,  List<TrenoDTO> listaTreni) {
 		Integer id = dao.createUtente(username, password, listaTreni);
 		System.out.println("Creatol'utente con id: " + id);
@@ -44,7 +46,7 @@ public class UtenteService {
 		return dao.findUtenteByUsername(username);
 	}
 	
-	public List<Bean> findAll(String classe){
-		return dao.findAll(classe);
+	public List<Bean> findAll(){
+		return dao.findAll();
 	}
 }

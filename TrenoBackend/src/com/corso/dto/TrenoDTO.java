@@ -2,10 +2,11 @@ package com.corso.dto;
 
 import java.sql.Date;
 
-public class TrenoDTO {
+import com.corso.dao.Bean;
+
+public class TrenoDTO implements Bean{
 	private Integer id;
     private Integer marca;
-    private Integer idUtente;
     private String composizioneTrenoString;
     private Date dataCreazione;
     
@@ -20,7 +21,6 @@ public class TrenoDTO {
 		super();
 		this.id = id;
 		this.marca = marca;
-		this.idUtente = idUtente;
 		this.composizioneTrenoString = composizioneTrenoString;
 		this.dataCreazione = dataCreazione;
 	}
@@ -33,13 +33,6 @@ public class TrenoDTO {
 		this.marca = marca;
 	}
 
-	public Integer getIdUtente() {
-		return idUtente;
-	}
-
-	public void setIdUtente(Integer idUtente) {
-		this.idUtente = idUtente;
-	}
 
 	public String getComposizioneTrenoString() {
 		return composizioneTrenoString;

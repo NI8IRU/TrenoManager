@@ -169,8 +169,10 @@ public class UtenteDAOImpl extends BaseDAO implements UtenteDAO{
 	      return utenteID;
 	   }
 	
-	public List<Bean> findAll(String classe){
-		return super.findAll(classe);
+	
+	
+	public List<Bean> findAll(){
+		return super.findAll("Utente");
 	}
 
 
