@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>EsercizioTreno4prova</project>
+		<project>TrenoBackend</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
