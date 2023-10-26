@@ -16,10 +16,10 @@ public class Beans {
 		return trenodao;
 	}
 	
-	@Bean(name ="trenoService")
-	public TrenoService getTrenoService() {
-		TrenoService trenoservice = new TrenoService();
-		trenoservice.setDao(getTrenoDao());
-		return trenoservice;
-	}
+//	@Bean(name ="trenoService")
+//	public TrenoService getTrenoService() {
+//		TrenoService trenoservice = new TrenoService();
+//		trenoservice.setDao(getTrenoDao());
+//		return trenoservice;
+//	}
 }

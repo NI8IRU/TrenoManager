@@ -19,8 +19,8 @@ import com.corso.service.TrenoService;
 @RequestMapping("/treno")
 public class TrenoController {
 
-	@Autowired
-	private TrenoService service;
+//	@Autowired
+//	private TrenoService service;
 	
 	@RequestMapping(path = { "/", "/home" }
 	   , method = { RequestMethod.GET, RequestMethod.POST })

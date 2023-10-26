@@ -11,11 +11,7 @@ import com.corso.dao.TrenoDAOImpl;
 import com.corso.dto.TrenoDTO;
 
 
-@ComponentScan("com.corso.spring.web.controller")
-
-
-
-
+@ComponentScan(basePackages = "com.corso.spring.web.controller")
 public class TrenoService {
 	
 	private TrenoDAO dao = new TrenoDAOImpl();

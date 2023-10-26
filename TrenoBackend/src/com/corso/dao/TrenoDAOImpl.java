@@ -5,11 +5,12 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
 import com.corso.dto.TrenoDTO;
 import com.corso.treno.Treno;
 
-
+@Component
 public class TrenoDAOImpl extends BaseDAO implements TrenoDAO{
 
 	public Integer create(TrenoDTO bean){
