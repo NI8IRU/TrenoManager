@@ -15,41 +15,60 @@
   http://www.springframework.org/schema/mvc/spring-mvc.xsd
   ">
 
-
-
-	<context:component-scan base-package="com" />
+<!-- Component scan a cui diciamo che il base-package si chiama "com.demo" e di scannerizzarlo -->
+	<context:component-scan base-package="com.progetto" />
 
 
 
 	<tx:annotation-driven />
 	<mvc:annotation-driven></mvc:annotation-driven>
-
-	<mvc:resources location="/WEB-INF/resources/"
-		mapping="/resources/**" />
+	
+	<!-- indica il percorso della cartella -->
+	<mvc:resources location="/WEB-INF/resources/" 
+		mapping="/resources/**" />  <!-- indica che puo accedere a tutte le cartelle all'interno 
+		di resources -->
+		
 	<mvc:annotation-driven></mvc:annotation-driven>
 
 
 	<!-- View Resolver -->
+	<!-- andiamo a specificare il percorso per la cartella dove andremo ad inserire i .jsp;  
+	in questo caso il percorso è "/WEB-INF/views/", all'interno di questa cartella avremo solo
+	file jsp. -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
 
 
 	<!-- data source -->
+	<!-- configurazione del DB mysql
+	 <bean
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		name="ds">
 
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/newspringmvccrud" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+
+	</bean>-->
+	
+	<!-- configurazione del DB postgreSQL -->
 	<bean
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		name="ds">
 
 		<property name="driverClassName"
-			value="com.mysql.cj.jdbc.Driver" />
+			value="org.postgresql.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/idmdb" />
-		<property name="username" value="root" />
-		<property name="password" value="password" />
+			value="jdbc:postgresql://localhost:5432/ProgettoIDM_DB" />
+		<property name="username" value="postgres" />
+		<property name="password" value="database" />
 
 	</bean>
 
@@ -59,32 +78,58 @@
 		name="factory">
 
 		<!-- data source -->
+		<!-- indichiamo come riferimento (ref) il name del database settato sopra -->
 		<property name="dataSource" ref="ds"></property>
 
 		<!-- hibernate properties -->
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 
 		<!-- annotated classes -->
+		<!-- lista delle classi entità, dunque nel nostro caso, lista delle classi
+		a cui daremo l'annotazione entity -->
 		<property name="annotatedClasses">
 			<list>
-				<value>com.backend.model.Person</value>
+				<value>com.progetto.model.Utente</value>
+				<value>com.progetto.model.Ruolo</value>
+				<value>com.progetto.dto.TrenoDTO</value>
+				<value>com.progetto.dto.CargoDTO</value>
+				<value>com.progetto.dto.LocomotivaDTO</value>
+				<value>com.progetto.dto.PasseggeriDTO</value>
+				<value>com.progetto.dto.RistoranteDTO</value>
 			</list>
 		</property>
 
 	</bean>
 
+	<!-- La classe HibernateTemplate offriva diversi metodi che semplificavano l'interazione con 
+	Hibernate, come l'esecuzione di query HQL (Hibernate Query Language), il caricamento e il 
+	salvataggio di oggetti persistenti e la gestione delle transazioni. Tuttavia, con l'evoluzione
+	 di Hibernate e Spring, l'uso di HibernateTemplate è diventato meno comune.
+	Invece di utilizzare HibernateTemplate, le applicazioni Spring più recenti tendono ad 
+	utilizzare le annotazioni di Spring (come @Repository, @Service, @Autowired)  -->
 	<bean class="org.springframework.orm.hibernate5.HibernateTemplate"
 		name="hibernateTemplate">
 		<property name="sessionFactory" ref="factory"></property>
 
 	</bean>
 
+	
+	<!-- org.springframework.orm.hibernate5.HibernateTransactionManager è una classe all'interno 
+	del framework Spring che fornisce l'integrazione tra le capacità di gestione delle transazioni
+	di Spring e il framework ORM (Object-Relational Mapping) Hibernate. È progettata 
+	specificamente per l'uso con Hibernate versione 5.x.
+	
+	In un'applicazione basata su Spring che utilizza Hibernate per la persistenza dei dati, è 
+	possibile utilizzare HibernateTransactionManager per gestire le transazioni in modo 
+	dichiarativo, sfruttando il supporto di Spring per la gestione delle transazioni dichiarative.
+	Questa classe semplifica il processo di gestione delle transazioni all'interno 
+	dell'applicazione. -->
 	<bean
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager"
 		name="transactionManager">
