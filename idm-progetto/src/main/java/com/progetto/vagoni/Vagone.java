@@ -1,5 +1,6 @@
 package com.progetto.vagoni;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public abstract class Vagone {
 	private String marca;
 	private double peso;
 	private double lunghezza;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Colore colore;
 
 	public Vagone(Integer id, String marca, double peso, double lunghezza, Colore colore) {

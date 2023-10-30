@@ -14,8 +14,12 @@ public class TrenoService {
 	@Autowired
 	TrenoDAO trenoDAO;
 
-	public void addTreno(String stringa) {
-		trenoDAO.addTreno(stringa);
+	public void addTrenoFR(String stringa) {
+		trenoDAO.addTrenoFR(stringa);
+	}
+	
+	public void addTrenoTN(String stringa) {
+		trenoDAO.addTrenoTN(stringa);
 	}
 	
 //	public void addTreno(TrenoDTO treno) {

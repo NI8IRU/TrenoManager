@@ -24,9 +24,9 @@ public class TrenoController {
 	}
 	
 	@PostMapping("/insertTreno")
-	public String insertTreno(@ModelAttribute("insertTreno") String string) {
+	public String insertTreno(@ModelAttribute("stringa") String string) {
 		
-		trenoservice.addTreno(string);
+		trenoservice.addTrenoTN(string);
 //		return "redirect:/trenoReport";
 		return "AddTreno";
 	}

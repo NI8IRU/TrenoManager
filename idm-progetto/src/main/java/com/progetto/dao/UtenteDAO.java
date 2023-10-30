@@ -25,16 +25,21 @@ public class UtenteDAO {
 	HibernateTemplate hibernateTemplate;
 	
 	@Transactional
-	public void addAdmin(Utente utente) {
-		utente.setRuolo("Admin");
-		hibernateTemplate.save(utente);
+	public void addAdmin(Utente utente)  {
+		if(findUtenteByUsername(utente.getUsername()) == null) {
+			utente.setRuolo("Admin");
+			hibernateTemplate.save(utente);
+		}
+		
 	}
 
 	
 	@Transactional
 	public void addUtente(Utente utente) {
-		utente.setRuolo("Utente");
-		hibernateTemplate.save(utente);
+		if(findUtenteByUsername(utente.getUsername()) == null) {
+			utente.setRuolo("Utente");
+			hibernateTemplate.save(utente);
+		}
 	}
 
 	public List<Utente> getAllUtente() {

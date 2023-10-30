@@ -1,5 +1,6 @@
 package com.progetto.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,7 +34,7 @@ public class Utente implements Bean{
 	@OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "UtenteId")
 //    @MapKeyColumn(name = "type")
-    private List<Treno> listaTreni;
+    private List<Treno> listaTreni = new ArrayList<>();
 
 	private String ruolo;
 //    @ManyToMany

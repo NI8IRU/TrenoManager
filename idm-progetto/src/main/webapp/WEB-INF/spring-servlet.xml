@@ -96,7 +96,6 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.progetto.model.Utente</value>
-				<value>com.progetto.model.Ruolo</value>
 				<value>com.progetto.model.Treno</value>
 				<value>com.progetto.vagoni.Vagone</value>
 				<value>com.progetto.vagoni.Cargo</value>
@@ -108,6 +107,10 @@
 				<value>com.progetto.fr_vagoni.FRLocomotiva</value>
 				<value>com.progetto.fr_vagoni.FRPasseggeri</value>
 				<value>com.progetto.fr_vagoni.FRRistorante</value>
+				<value>com.progetto.tn_vagoni.TNCargo</value>
+				<value>com.progetto.tn_vagoni.TNLocomotiva</value>
+				<value>com.progetto.tn_vagoni.TNPasseggeri</value>
+				<value>com.progetto.tn_vagoni.TNRistorante</value>
 			</list>
 		</property>
 

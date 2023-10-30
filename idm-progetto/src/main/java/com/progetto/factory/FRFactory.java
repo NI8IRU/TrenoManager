@@ -1,17 +1,31 @@
 package com.progetto.factory;
 
+import javax.transaction.Transactional;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Component;
+
 import com.progetto.Colore;
+import com.progetto.dao.ColoreDao;
 import com.progetto.enumerati.ColoriEnum;
 import com.progetto.fr_vagoni.FRCargo;
 import com.progetto.fr_vagoni.FRLocomotiva;
 import com.progetto.fr_vagoni.FRPasseggeri;
 import com.progetto.fr_vagoni.FRRistorante;
+import com.progetto.service.ColoreService;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Component
 public class FRFactory extends VagoneFactory {
 
 	private Colore coloreLocomotiva = new Colore(ColoriEnum.GRIGIOSCURO.getR(), ColoriEnum.GRIGIOSCURO.getG(), ColoriEnum.GRIGIOSCURO.getB());
@@ -19,6 +33,7 @@ public class FRFactory extends VagoneFactory {
 	private Colore coloreRistorante = new Colore(ColoriEnum.VERDEACQUASCURO.getR(),
 			ColoriEnum.VERDEACQUASCURO.getG(), ColoriEnum.VERDEACQUASCURO.getB());
 	private Colore coloreCargo = new Colore(ColoriEnum.OROSCURO.getR(), ColoriEnum.OROSCURO.getG(), ColoriEnum.OROSCURO.getB());
+	
 	
 	@Override
 	public String getMarca() {

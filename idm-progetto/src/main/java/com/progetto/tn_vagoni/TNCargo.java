@@ -1,8 +1,13 @@
 package com.progetto.tn_vagoni;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import com.progetto.Colore;
 import com.progetto.vagoni.Cargo;
 
+@Entity
+@DiscriminatorValue("VAGONE_TN_CARGO")
 public class TNCargo extends Cargo {
 
 	public TNCargo(Integer id, String marca, double peso, double lunghezza, Colore colore,

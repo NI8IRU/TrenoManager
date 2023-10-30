@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.progetto.Colore;
 import com.progetto.enumerati.ColoriEnum;
-import com.progetto.model.Ruolo;
+
 
 public class Test {
 

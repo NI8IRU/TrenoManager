@@ -2,6 +2,8 @@ package com.progetto.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import com.progetto.dao.UtenteDAO;
 import com.progetto.model.Utente;
 
 @Service
+@Transactional
 public class UtenteService {
 
 	@Autowired

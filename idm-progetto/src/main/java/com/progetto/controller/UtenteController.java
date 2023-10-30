@@ -45,11 +45,13 @@ public class UtenteController {
 	    if (utente != null && utente.getPassword().equals(password)) {
 	        // Le credenziali sono corrette, quindi registra l'utente nella sessione
 	        session.setAttribute("utenteLoggato", utente);
-	        return "UtenteDashboard"; // Reindirizza a una pagina dopo il login
+//	        return "UtenteDashboard"; // Reindirizza a una pagina dopo il login
+	        return "AddTreno";
 	    } else {
 	        // credenziali errate
 	    	session.setAttribute("msg", "Invalid data");
 	        return "redirect:/loginUtente";
+	    	
 	    }
 	}
 	
