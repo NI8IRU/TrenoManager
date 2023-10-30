@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.progetto.Bean;
-import com.progetto.dto.TrenoDTO;
+
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,9 +31,9 @@ public class Utente implements Bean{
 	private String username;
 	private String password;
 	@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "utenteId")
+    @JoinColumn(name = "UtenteId")
 //    @MapKeyColumn(name = "type")
-    private List<TrenoDTO> listaTreni;
+    private List<Treno> listaTreni;
 
 	private String ruolo;
 //    @ManyToMany

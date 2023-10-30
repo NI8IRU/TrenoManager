@@ -64,7 +64,7 @@ public abstract class TrenoBuilder {
 		return t;
 	}
 
-	protected abstract Integer getMarca();
+	protected abstract String getMarca();
 
 	protected abstract Vagone costruisciLocomotiva();
 

@@ -7,7 +7,7 @@ import com.progetto.vagoni.Ristorante;
 
 public abstract class VagoneFactory {
 
-	public abstract Integer getMarca();
+	public abstract String getMarca();
 
 	public abstract Locomotiva creaLocomotiva();
 

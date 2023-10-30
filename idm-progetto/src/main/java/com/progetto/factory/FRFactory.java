@@ -1,72 +1,87 @@
 package com.progetto.factory;
 
-import com.progetto.vagoni.Cargo;
-import com.progetto.vagoni.Locomotiva;
-import com.progetto.vagoni.Passeggeri;
-import com.progetto.vagoni.Ristorante;
+import com.progetto.Colore;
+import com.progetto.enumerati.ColoriEnum;
+import com.progetto.fr_vagoni.FRCargo;
+import com.progetto.fr_vagoni.FRLocomotiva;
+import com.progetto.fr_vagoni.FRPasseggeri;
+import com.progetto.fr_vagoni.FRRistorante;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class FRFactory extends VagoneFactory {
 
+	private Colore coloreLocomotiva = new Colore(ColoriEnum.GRIGIOSCURO.getR(), ColoriEnum.GRIGIOSCURO.getG(), ColoriEnum.GRIGIOSCURO.getB());
+	private Colore colorePasseggeri = new Colore(ColoriEnum.CIANOSCURO.getR(), ColoriEnum.CIANOSCURO.getG(), ColoriEnum.CIANOSCURO.getB());
+	private Colore coloreRistorante = new Colore(ColoriEnum.VERDEACQUASCURO.getR(),
+			ColoriEnum.VERDEACQUASCURO.getG(), ColoriEnum.VERDEACQUASCURO.getB());
+	private Colore coloreCargo = new Colore(ColoriEnum.OROSCURO.getR(), ColoriEnum.OROSCURO.getG(), ColoriEnum.OROSCURO.getB());
+	
 	@Override
-	public Integer getMarca() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getMarca() {
+		return "Frecciarossa";
+	}
+
+	
+
+	@Override
+	public FRLocomotiva creaLocomotiva() {
+		return new FRLocomotiva(getMarca(), 108, 11, coloreLocomotiva,5500, 4000, 0);
 	}
 
 	@Override
-	public Locomotiva creaLocomotiva() {
-		// TODO Auto-generated method stub
-		return null;
+	public FRPasseggeri creaPasseggeri() {
+		return new FRPasseggeri(getMarca(), 90, 9,
+				colorePasseggeri,
+				70, 0);
 	}
 
 	@Override
-	public Passeggeri creaPasseggeri() {
-		// TODO Auto-generated method stub
-		return null;
+	public FRRistorante creaRistorante() {
+		return new FRRistorante(getMarca(), 90, 9, coloreRistorante, "2 Stelle", "Menu..");
 	}
 
 	@Override
-	public Ristorante creaRistorante() {
-		// TODO Auto-generated method stub
-		return null;
+	public FRCargo creaCargo() {
+		return new FRCargo(getMarca(), 90, 9,
+				coloreCargo, 80, 0);
 	}
 
-	@Override
-	public Cargo creaCargo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	
 //	@Override
-//	public String getMarca() {
-//		return "Frecciarossa";
+//	public Integer getMarca() {
+//		// TODO Auto-generated method stub
+//		return null;
 //	}
 //
 //	@Override
-//	public FRLocomotiva creaLocomotiva() {
-//		return new FRLocomotiva("H", getMarca(), 108, 11,
-//				new Colore(ColoriEnum.GRIGIOSCURO.getR(), ColoriEnum.GRIGIOSCURO.getG(), ColoriEnum.GRIGIOSCURO.getB()),
-//				5500, 4000, 0);
+//	public Locomotiva creaLocomotiva() {
+//		// TODO Auto-generated method stub
+//		return null;
 //	}
 //
 //	@Override
-//	public FRPasseggeri creaPasseggeri() {
-//		return new FRPasseggeri("P", getMarca(), 90, 9,
-//				new Colore(ColoriEnum.CIANOSCURO.getR(), ColoriEnum.CIANOSCURO.getG(), ColoriEnum.CIANOSCURO.getB()),
-//				70, 0);
+//	public Passeggeri creaPasseggeri() {
+//		// TODO Auto-generated method stub
+//		return null;
 //	}
 //
 //	@Override
-//	public FRRistorante creaRistorante() {
-//		return new FRRistorante("R", getMarca(), 90, 9, new Colore(ColoriEnum.VERDEACQUASCURO.getR(),
-//				ColoriEnum.VERDEACQUASCURO.getG(), ColoriEnum.VERDEACQUASCURO.getB()), "2 Stelle", "Menu..");
+//	public Ristorante creaRistorante() {
+//		// TODO Auto-generated method stub
+//		return null;
 //	}
 //
 //	@Override
-//	public FRCargo creaCargo() {
-//		return new FRCargo("C", getMarca(), 90, 9,
-//				new Colore(ColoriEnum.OROSCURO.getR(), ColoriEnum.OROSCURO.getG(), ColoriEnum.OROSCURO.getB()), 80, 0);
+//	public Cargo creaCargo() {
+//		// TODO Auto-generated method stub
+//		return null;
 //	}
 
+	
 }
 

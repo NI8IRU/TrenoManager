@@ -1,19 +1,32 @@
 package com.progetto.vagoni;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import com.progetto.Colore;
 
-public abstract class Cargo extends VagoneGenerico {
+@Entity
+@DiscriminatorValue("VAGONE_CARGO")
+public class Cargo extends Vagone {
 
 	private Integer numeroMassimoPacchi;
 	private Integer numeroPacchi;
 
-	public Cargo(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Colore colore,
+	public Cargo(Integer id, String marca, double peso, double lunghezza, Colore colore,
 			Integer numeroMassimoPacchi, Integer numeroPacchi) {
-		super(id, stringId, marca, peso, lunghezza, colore);
+		super(id, marca, peso, lunghezza, colore);
 		this.numeroMassimoPacchi = numeroMassimoPacchi;
 		this.numeroPacchi = numeroPacchi;
 	}
 
+	public Cargo(String marca, double peso, double lunghezza, Colore colore,
+			Integer numeroMassimoPacchi, Integer numeroPacchi) {
+		super(marca, peso, lunghezza, colore);
+		this.numeroMassimoPacchi = numeroMassimoPacchi;
+		this.numeroPacchi = numeroPacchi;
+	}
+	
+	
 	public Integer getNumeroMassimoPacchi() {
 		return numeroMassimoPacchi;
 	}

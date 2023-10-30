@@ -1,13 +1,23 @@
 package com.progetto.fr_vagoni;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import com.progetto.Colore;
 import com.progetto.vagoni.Locomotiva;
 
+@Entity
+@DiscriminatorValue("VAGONE_FR_LOCOMOTIVA")
 public class FRLocomotiva extends Locomotiva {
 
-	public FRLocomotiva(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Colore colore,
+	public FRLocomotiva(Integer id, String marca, double peso, double lunghezza, Colore colore,
 			Integer potenzaMotore, Integer carburanteMassimo, Integer carburanteAttuale) {
-		super(id, stringId, marca, peso, lunghezza, colore, potenzaMotore, carburanteMassimo, carburanteAttuale);
+		super(id, marca, peso, lunghezza, colore, potenzaMotore, carburanteMassimo, carburanteAttuale);
+	}
+
+	public FRLocomotiva(String marca, double peso, double lunghezza, Colore colore,
+			Integer potenzaMotore, Integer carburanteMassimo, Integer carburanteAttuale) {
+		super(marca, peso, lunghezza, colore, potenzaMotore, carburanteMassimo, carburanteAttuale);
 	}
 
 }

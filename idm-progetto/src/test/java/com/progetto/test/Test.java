@@ -1,31 +1,29 @@
-//package com.progetto.test;
-//
-//import org.hibernate.HibernateException;
-//import org.hibernate.Session;
-//import org.hibernate.SessionFactory;
-//import org.hibernate.Transaction;
-//import org.hibernate.cfg.Configuration;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.ApplicationContext;
-//import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-//import org.springframework.stereotype.Component;
-//
-//import com.progetto.model.Ruolo;
-//
-//@Component
-//public class Test {
-//
-//	@Autowired
-//	SessionFactory factory;
-//	
-//	public static void main(String[] args) {
-//		
-//		
-//		Test test = new Test();
-//		
-//		test.addRuoli();
-//	}
-//	
+package com.progetto.test;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
+
+import com.progetto.Colore;
+import com.progetto.enumerati.ColoriEnum;
+import com.progetto.model.Ruolo;
+
+public class Test {
+
+	
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+	
 //	public void addRuoli() {
 //	    Session session = factory.openSession();
 //	    Transaction tx = null;
@@ -61,6 +59,6 @@
 //	        session.close();
 //	    }
 //	}
-//
-//
-//}
+
+
+}

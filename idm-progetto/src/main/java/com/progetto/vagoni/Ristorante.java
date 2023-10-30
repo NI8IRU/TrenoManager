@@ -1,19 +1,31 @@
 package com.progetto.vagoni;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import com.progetto.Colore;
 
-public abstract class Ristorante extends VagoneGenerico {
+@Entity
+@DiscriminatorValue("VAGONE_RISTORANTE")
+public class Ristorante extends Vagone {
 
 	private String stelleRistorante;
 	private String menu;
 
-	public Ristorante(Integer id, String stringId, Integer marca, Double peso, Double lunghezza, Colore colore,
+	public Ristorante(Integer id, String marca, double peso, double lunghezza, Colore colore,
 			String stelleRistorante, String menu) {
-		super(id, stringId, marca, peso, lunghezza, colore);
+		super(id, marca, peso, lunghezza, colore);
 		this.stelleRistorante = stelleRistorante;
 		this.menu = menu;
 	}
 
+	public Ristorante(String marca, double peso, double lunghezza, Colore colore,
+			String stelleRistorante, String menu) {
+		super(marca, peso, lunghezza, colore);
+		this.stelleRistorante = stelleRistorante;
+		this.menu = menu;
+	}
+	
 	public String getStelleRistorante() {
 		return stelleRistorante;
 	}

@@ -97,11 +97,17 @@
 			<list>
 				<value>com.progetto.model.Utente</value>
 				<value>com.progetto.model.Ruolo</value>
-				<value>com.progetto.dto.TrenoDTO</value>
-				<value>com.progetto.dto.CargoDTO</value>
-				<value>com.progetto.dto.LocomotivaDTO</value>
-				<value>com.progetto.dto.PasseggeriDTO</value>
-				<value>com.progetto.dto.RistoranteDTO</value>
+				<value>com.progetto.model.Treno</value>
+				<value>com.progetto.vagoni.Vagone</value>
+				<value>com.progetto.vagoni.Cargo</value>
+				<value>com.progetto.vagoni.Passeggeri</value>
+				<value>com.progetto.vagoni.Locomotiva</value>
+				<value>com.progetto.vagoni.Ristorante</value>
+				<value>com.progetto.Colore</value>
+				<value>com.progetto.fr_vagoni.FRCargo</value>
+				<value>com.progetto.fr_vagoni.FRLocomotiva</value>
+				<value>com.progetto.fr_vagoni.FRPasseggeri</value>
+				<value>com.progetto.fr_vagoni.FRRistorante</value>
 			</list>
 		</property>
 

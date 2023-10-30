@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.progetto.dao.TrenoDAO;
-import com.progetto.dto.TrenoDTO;
+import com.progetto.model.Treno;
 
 @Service
 public class TrenoService {
@@ -22,15 +22,15 @@ public class TrenoService {
 //		trenoDAO.addTreno(treno);
 //	}
 
-	public List<TrenoDTO> getAllTreno() {
+	public List<Treno> getAllTreno() {
 		return trenoDAO.getAllTreno();
 	}
 
-	public TrenoDTO getTrenoById(Long id) {
+	public Treno getTrenoById(Long id) {
 		return trenoDAO.getTrenoById(id);
 	}
 
-	public void updateTreno(TrenoDTO treno) {
+	public void updateTreno(Treno treno) {
 		trenoDAO.updateTreno(treno);
 	}
 
