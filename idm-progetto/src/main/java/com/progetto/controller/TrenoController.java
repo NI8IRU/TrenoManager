@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-import com.progetto.dto.TrenoDTO;
 import com.progetto.service.TrenoService;
 
 @Controller
@@ -27,6 +25,7 @@ public class TrenoController {
 	
 	@PostMapping("/insertTreno")
 	public String insertTreno(@ModelAttribute("insertTreno") String string) {
+		
 		trenoservice.addTreno(string);
 //		return "redirect:/trenoReport";
 		return "AddTreno";

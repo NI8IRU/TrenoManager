@@ -9,7 +9,6 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 import com.progetto.builder.ConcreteBuilder;
-import com.progetto.dto.TrenoDTO;
 import com.progetto.eccezioni.TrenoIrregolareException;
 import com.progetto.factory.FRFactory;
 import com.progetto.model.Treno;
@@ -19,19 +18,26 @@ public class TrenoDAO {
 
 	@Autowired
 	HibernateTemplate hibernateTemplate;
+	
+	@Autowired
+	ColoreDao coloredao;
 
 	@Transactional
 	public void addTreno(String stringa) {
 		FRFactory frFactory = new FRFactory();
+		coloredao.addColore(frFactory.getColoreCargo());
+		coloredao.addColore(frFactory.getColoreLocomotiva());
+		coloredao.addColore(frFactory.getColorePasseggeri());
+		coloredao.addColore(frFactory.getColoreRistorante());
 		ConcreteBuilder builder = new ConcreteBuilder(frFactory);
 		Treno treno = new Treno();
 		try {
-			treno = builder.assemblaTreno("HPRPP");
+			treno = builder.assemblaTreno(stringa);
 		} catch (TrenoIrregolareException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		
+		System.out.println(treno);
 		hibernateTemplate.save(treno);
 	}
 	
@@ -40,24 +46,24 @@ public class TrenoDAO {
 //		hibernateTemplate.save(treno);
 //	}
 
-	public List<TrenoDTO> getAllTreno() {
-		return hibernateTemplate.loadAll(TrenoDTO.class);
+	public List<Treno> getAllTreno() {
+		return hibernateTemplate.loadAll(Treno.class);
 	}
 
 	@Transactional
-	public TrenoDTO getTrenoById(Long id) {
-		TrenoDTO treno= hibernateTemplate.get(TrenoDTO.class, id);
+	public Treno getTrenoById(Long id) {
+		Treno treno= hibernateTemplate.get(Treno.class, id);
 		return treno;
 	}
 
 	@Transactional
-	public void updateTreno(TrenoDTO treno) {
+	public void updateTreno(Treno treno) {
 		hibernateTemplate.update(treno);
 	}
 
 	@Transactional
 	public void deleteTreno(Long id) {
-		hibernateTemplate.delete(hibernateTemplate.load(TrenoDTO.class, id));
+		hibernateTemplate.delete(hibernateTemplate.load(Treno.class, id));
 	}
 }
 

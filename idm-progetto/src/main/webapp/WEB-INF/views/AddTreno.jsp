@@ -11,7 +11,7 @@
 
 	<div class="container mt-3">
 
-		<h1>Add Employee Form</h1>
+		<h1>Add Treno Form</h1>
 		<form action="insertTreno" method="post">
 
 			<div class="row">
