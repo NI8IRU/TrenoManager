@@ -44,4 +44,44 @@ public class Utente implements Bean{
 //        inverseJoinColumns = @JoinColumn(name = "id_ruolo")
 //    )
 //    private Set<Ruolo> ruoli;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Treno> getListaTreni() {
+		return listaTreni;
+	}
+
+	public void setListaTreni(List<Treno> listaTreni) {
+		this.listaTreni = listaTreni;
+	}
+
+	public String getRuolo() {
+		return ruolo;
+	}
+
+	public void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
+	}
 }

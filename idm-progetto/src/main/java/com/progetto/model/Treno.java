@@ -44,4 +44,24 @@ public class Treno {
 		treno.remove(v);
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public void setTreno(List<Vagone> treno) {
+		this.treno = treno;
+	}
+
 }
