@@ -21,10 +21,6 @@ public class TrenoService {
 	public void addTrenoTN(String stringa) {
 		trenoDAO.addTrenoTN(stringa);
 	}
-	
-//	public void addTreno(TrenoDTO treno) {
-//		trenoDAO.addTreno(treno);
-//	}
 
 	public List<Treno> getAllTreno() {
 		return trenoDAO.getAllTreno();

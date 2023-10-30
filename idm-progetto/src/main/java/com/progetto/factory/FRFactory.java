@@ -1,30 +1,15 @@
 package com.progetto.factory;
 
-import javax.transaction.Transactional;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Component;
-
 import com.progetto.Colore;
-import com.progetto.dao.ColoreDao;
 import com.progetto.enumerati.ColoriEnum;
 import com.progetto.fr_vagoni.FRCargo;
 import com.progetto.fr_vagoni.FRLocomotiva;
 import com.progetto.fr_vagoni.FRPasseggeri;
 import com.progetto.fr_vagoni.FRRistorante;
-import com.progetto.service.ColoreService;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+
 @Component
 public class FRFactory extends VagoneFactory {
 
@@ -64,39 +49,6 @@ public class FRFactory extends VagoneFactory {
 		return new FRCargo(getMarca(), 90, 9,
 				coloreCargo, 80, 0);
 	}
-
-	
-	
-//	@Override
-//	public Integer getMarca() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Locomotiva creaLocomotiva() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Passeggeri creaPasseggeri() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Ristorante creaRistorante() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Cargo creaCargo() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 	
 }
 

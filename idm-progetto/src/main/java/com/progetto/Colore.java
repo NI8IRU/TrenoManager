@@ -5,45 +5,67 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.NoArgsConstructor;
-
 @Entity
-@NoArgsConstructor
 public class Colore {
-	
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private Integer id;
 
-	private java.awt.Color c;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-	public Colore(int R, int G, int B) {
-		this.c = new java.awt.Color(R, G, B);
+	private String name;
+	private Integer r;
+	private Integer g;
+	private Integer b;
+
+	public Colore() {
+
 	}
 
-	public int getR() {
-		return c.getRed();
+	public Colore(Integer r, Integer g, Integer b) {
+		super();
+		this.r = r;
+		this.g = g;
+		this.b = b;
 	}
 
-	public int getG() {
-		return c.getGreen();
+	public Integer getId() {
+		return id;
 	}
 
-	public int getB() {
-		return c.getBlue();
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public java.awt.Color getC() {
-		return c;
+	public String getName() {
+		return name;
 	}
 
-	public void setC(java.awt.Color c) {
-		this.c = c;
+	public void setName(String nome) {
+		this.name = nome;
 	}
 
-	@Override
-	public String toString() {
-		return "Colore [R=" + getR() + ", G=" + getG() + ", B=" + getB() + "]";
+	public Integer getR() {
+		return r;
+	}
+
+	public void setR(Integer r) {
+		this.r = r;
+	}
+
+	public Integer getG() {
+		return g;
+	}
+
+	public void setG(Integer g) {
+		this.g = g;
+	}
+
+	public Integer getB() {
+		return b;
+	}
+
+	public void setB(Integer b) {
+		this.b = b;
 	}
 
 }

@@ -7,12 +7,6 @@ import com.progetto.tn_vagoni.TNLocomotiva;
 import com.progetto.tn_vagoni.TNPasseggeri;
 import com.progetto.tn_vagoni.TNRistorante;
 
-
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class TNFactory extends VagoneFactory {
 
 	private Colore coloreLocomotiva = new Colore(ColoriEnum.GRIGIOSCURO.getR(), ColoriEnum.GRIGIOSCURO.getG(), ColoriEnum.GRIGIOSCURO.getB());
