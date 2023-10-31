@@ -21,8 +21,9 @@ public class Colore {
 
 	}
 
-	public Colore(Integer r, Integer g, Integer b) {
+	public Colore(String name, Integer r, Integer g, Integer b) {
 		super();
+		this.name = name;
 		this.r = r;
 		this.g = g;
 		this.b = b;

@@ -13,11 +13,11 @@ import com.progetto.fr_vagoni.FRRistorante;
 @Component
 public class FRFactory extends VagoneFactory {
 
-	private Colore coloreLocomotiva = new Colore(ColoriEnum.GRIGIOSCURO.getR(), ColoriEnum.GRIGIOSCURO.getG(), ColoriEnum.GRIGIOSCURO.getB());
-	private Colore colorePasseggeri = new Colore(ColoriEnum.CIANOSCURO.getR(), ColoriEnum.CIANOSCURO.getG(), ColoriEnum.CIANOSCURO.getB());
-	private Colore coloreRistorante = new Colore(ColoriEnum.VERDEACQUASCURO.getR(),
+	private Colore coloreLocomotiva = new Colore(ColoriEnum.GRIGIOSCURO.getNome(), ColoriEnum.GRIGIOSCURO.getR(), ColoriEnum.GRIGIOSCURO.getG(), ColoriEnum.GRIGIOSCURO.getB());
+	private Colore colorePasseggeri = new Colore(ColoriEnum.CIANOSCURO.getNome(), ColoriEnum.CIANOSCURO.getR(), ColoriEnum.CIANOSCURO.getG(), ColoriEnum.CIANOSCURO.getB());
+	private Colore coloreRistorante = new Colore(ColoriEnum.VERDEACQUASCURO.getNome(), ColoriEnum.VERDEACQUASCURO.getR(),
 			ColoriEnum.VERDEACQUASCURO.getG(), ColoriEnum.VERDEACQUASCURO.getB());
-	private Colore coloreCargo = new Colore(ColoriEnum.OROSCURO.getR(), ColoriEnum.OROSCURO.getG(), ColoriEnum.OROSCURO.getB());
+	private Colore coloreCargo = new Colore(ColoriEnum.OROSCURO.getNome(), ColoriEnum.OROSCURO.getR(), ColoriEnum.OROSCURO.getG(), ColoriEnum.OROSCURO.getB());
 	
 	
 	@Override
