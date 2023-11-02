@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.progetto.eccezioni.TrenoUniversalException;
 import com.progetto.service.TrenoService;
 
 @Controller
@@ -22,7 +23,7 @@ public class TrenoController {
 	}
 	
 	@PostMapping("/insertTreno")
-	public String insertTreno(@ModelAttribute("stringa") String string) {
+	public String insertTreno(@ModelAttribute("stringa") String string) throws TrenoUniversalException {
 		
 		trenoservice.addTrenoTN(string);
 //		return "redirect:/trenoReport";

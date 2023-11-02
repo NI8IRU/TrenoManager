@@ -32,8 +32,8 @@
   will also need to set the passwords to something appropriate.
 -->
 
-  <user password="admin" roles="manager-gui" username="admin"/>
-  <!-- <user username="robot" password="<must-be-changed>" roles="manager-script"/> -->
+  <user password="pass" roles="manager-gui" username="admin"/>
+  <user password="pass" roles="manager-script" username="robot"/>
 
 <!--
   The sample user and role entries below are intended for use with the

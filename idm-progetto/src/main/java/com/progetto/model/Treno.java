@@ -58,5 +58,10 @@ public class Treno {
 	public void setTreno(List<Vagone> treno) {
 		this.treno = treno;
 	}
+	
+	@Override
+	public String toString() {
+		return "Sono un treno";
+	}
 
 }

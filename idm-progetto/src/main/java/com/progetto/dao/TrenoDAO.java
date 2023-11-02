@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.progetto.builder.ConcreteBuilder;
 import com.progetto.eccezioni.TrenoIrregolareException;
+import com.progetto.eccezioni.TrenoUniversalException;
 import com.progetto.factory.FRFactory;
 import com.progetto.factory.TNFactory;
 import com.progetto.model.Treno;
@@ -33,7 +34,7 @@ public class TrenoDAO {
 	ColoreDao coloredao;
 
 	@Transactional
-	public void addTrenoFR(String stringa) {
+	public void addTrenoFR(String stringa) throws TrenoUniversalException {
 		FRFactory frFactory = new FRFactory();
 		
 		ConcreteBuilder builder = new ConcreteBuilder(frFactory);
@@ -60,7 +61,7 @@ public class TrenoDAO {
 	}
 	
 	@Transactional
-	public void addTrenoTN(String stringa) {
+	public void addTrenoTN(String stringa) throws TrenoUniversalException {
 		TNFactory tnFactory = new TNFactory();
 		
 		ConcreteBuilder builder = new ConcreteBuilder(tnFactory);
