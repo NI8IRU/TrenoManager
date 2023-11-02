@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+
+import com.progetto.eccezioni.TrenoUniversalException;
 import com.progetto.model.PrenotazionePosto;
-import com.progetto.model.Utente;
+
 import com.progetto.service.PostoService;
 import com.progetto.service.PrenotazionePostoService;
 import com.progetto.service.TrenoService;
@@ -44,7 +45,7 @@ public class TrenoController {
 	}
 	
 	@PostMapping("/insertTreno")
-	public String insertTreno(@ModelAttribute("stringa") String string) {
+	public String insertTreno(@ModelAttribute("stringa") String string) throws TrenoUniversalException {
 		
 		trenoservice.addTrenoTN(string);
 //		return "redirect:/trenoReport";

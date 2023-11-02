@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.progetto.dao.TrenoDAO;
+import com.progetto.eccezioni.TrenoUniversalException;
 import com.progetto.model.Treno;
 import com.progetto.vagoni.PostoASedere;
 import com.progetto.vagoni.Vagone;
@@ -16,11 +17,11 @@ public class TrenoService {
 	@Autowired
 	TrenoDAO trenoDAO;
 
-	public void addTrenoFR(String stringa) {
+	public void addTrenoFR(String stringa) throws TrenoUniversalException {
 		trenoDAO.addTrenoFR(stringa);
 	}
 	
-	public void addTrenoTN(String stringa) {
+	public void addTrenoTN(String stringa) throws TrenoUniversalException {
 		trenoDAO.addTrenoTN(stringa);
 	}
 
