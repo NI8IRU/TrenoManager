@@ -60,7 +60,7 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-    <Connector connectionTimeout="20000" maxParameterCount="1000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
+    <Connector connectionTimeout="20000" maxParameterCount="1000" port="8081" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -160,11 +160,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-<<<<<<< HEAD
-      <Context docBase="TrenoVisualiser" path="/EsempioWeb2" reloadable="true" source="org.eclipse.jst.jee.server:TrenoVisualiser"/><Context docBase="ProgettoIDM" path="/ProgettoIDM" reloadable="true" source="org.eclipse.jst.j2ee.server:ProgettoIDM"/></Host>
-=======
-      <Context docBase="idm-progetto" path="/ProgettoIDM" reloadable="true" source="org.eclipse.jst.j2ee.server:idm-progetto"/></Host>
->>>>>>> 607ec7be08159ccfc8aca9152841f2eaf028ef94
+      <Context docBase="ProgettoIDM" path="/ProgettoIDM" reloadable="true" source="org.eclipse.jst.j2ee.server:ProgettoIDM"/></Host>
     </Engine>
   </Service>
 </Server>

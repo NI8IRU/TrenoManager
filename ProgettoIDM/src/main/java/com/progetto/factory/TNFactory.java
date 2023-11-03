@@ -36,7 +36,7 @@ public class TNFactory extends VagoneFactory {
 	public TNPasseggeri creaPasseggeri() {
 		
 		List<PostoASedere> listaposti = new ArrayList<>();
-		for(int i=0; i<20; i++) {
+		for(int i=0; i<12; i++) {
 			listaposti.add(new PostoASedere());
 		}
 		return new TNPasseggeri(getMarca(), 90, 9, colorePasseggeri, 70, 0, listaposti);

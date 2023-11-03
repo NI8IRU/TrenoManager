@@ -57,6 +57,7 @@ public class TrenoDAO {
 			e.printStackTrace();
 		} 
 		System.out.println(treno);
+		System.out.println("treno aggiunto");
 		
 		for(int i=0; i<treno.getTreno().size(); i++) {
 			coloredao.addColore(treno.getTreno().get(i).getColore());

@@ -1,5 +1,8 @@
 package com.progetto.factory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 import com.progetto.Colore;
 import com.progetto.enumerati.ColoriEnum;
@@ -7,6 +10,7 @@ import com.progetto.fr_vagoni.FRCargo;
 import com.progetto.fr_vagoni.FRLocomotiva;
 import com.progetto.fr_vagoni.FRPasseggeri;
 import com.progetto.fr_vagoni.FRRistorante;
+import com.progetto.vagoni.PostoASedere;
 
 
 
@@ -34,9 +38,14 @@ public class FRFactory extends VagoneFactory {
 
 	@Override
 	public FRPasseggeri creaPasseggeri() {
+		List<PostoASedere> listaposti = new ArrayList<>();
+		for(int i=0; i<20; i++) {
+			listaposti.add(new PostoASedere());
+		}
+		
 		return new FRPasseggeri(getMarca(), 90, 9,
 				colorePasseggeri,
-				70, 0);
+				70, 0, listaposti);
 	}
 
 	@Override
