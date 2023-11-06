@@ -1,21 +1,11 @@
 package com.progetto.builder;
 
-import com.progetto.eccezioni.NoPasseggeriWithRistoranteException;
-import com.progetto.eccezioni.PasseggeriAndCargoException;
-import com.progetto.eccezioni.TrenoIrregolareException;
-import com.progetto.eccezioni.TrenoUniversalException;
-import com.progetto.eccezioni.locomotiva.LocomotivaFuoriPostoException;
-import com.progetto.eccezioni.locomotiva.LocomotivaSurplussException;
-import com.progetto.eccezioni.locomotiva.NoLocomotivaException;
-import com.progetto.eccezioni.locomotiva.OnlyLocomotiveException;
-import com.progetto.eccezioni.ristorante.RistoranteAndCargoException;
-import com.progetto.eccezioni.ristorante.RistoranteSurplussException;
 import com.progetto.model.Treno;
 import com.progetto.vagoni.Vagone;
 
 public abstract class TrenoBuilder {
 
-	public Treno assemblaTreno(String stringId) throws TrenoUniversalException {
+	public Treno assemblaTreno(String stringId) {
 
 		Treno t = new Treno();
 
@@ -36,8 +26,6 @@ public abstract class TrenoBuilder {
 			case 'C':
 				t.addVagone(costruisciCargo());
 				break;
-			default:
-				throw new TrenoUniversalException("La composizione del treno è irregolare.");
 			}
 		}
 

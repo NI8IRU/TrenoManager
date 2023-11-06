@@ -1,5 +1,7 @@
 package com.progetto.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +29,11 @@ public class TrenoService {
 	TrenoDAO trenoDAO;
 
 	public void addTrenoFR(String stringa) throws TrenoUniversalException {
-		if (controllo(stringa)) {
-			trenoDAO.addTrenoFR(stringa);
-		}
+		controlloAndCostruzione(stringa, "FR");
 	}
 
 	public void addTrenoTN(String stringa) throws TrenoUniversalException {
-		if (controllo(stringa)) {
-			trenoDAO.addTrenoTN(stringa);
-		}
+		controlloAndCostruzione(stringa, "TN");
 	}
 
 	public List<Treno> getAllTreno() {
@@ -66,7 +64,7 @@ public class TrenoService {
 		trenoDAO.deleteTreno(id);
 	}
 
-	public Boolean controllo(String stringId) {
+	private void controlloAndCostruzione(String stringId, String marca) {
 		int counter = 0;
 		stringId = stringId.toUpperCase();
 		char[] arrayStringId = stringId.toCharArray();
@@ -121,11 +119,36 @@ public class TrenoService {
 			if (stringId.contains("P") && stringId.contains("C")) {
 				throw new PasseggeriAndCargoException(stringId);
 			}
-			return true;
+			
+			if (unallowedChars(stringId)) {
+				throw new TrenoUniversalException(stringId);
+			}
+			
+			if (marca.equals("FR")) {
+				trenoDAO.addTrenoFR(stringId);
+			}
+			
+			if (marca.equals("TN")) {
+				trenoDAO.addTrenoTN(stringId);
+			}
 		} catch (TrenoIrregolareException e) {
 			System.out.println(e.soluzione());
 			e.printStackTrace();
-			return false;
+		} catch (TrenoUniversalException e) {
+			System.out.println("La sigla contiene caratteri non ammessi, caratteri ammessi: 'H,P,R,C'");
+			e.printStackTrace();
 		}
+	}
+
+	private boolean unallowedChars(String stringId) {
+		ArrayList<String> caratteriConcessi = new ArrayList<String>(Arrays.asList("H", "P", "R", "C"));
+		String[] arrayStringId = stringId.split("");
+		
+		for (String c : arrayStringId) {
+			if (!caratteriConcessi.contains(c)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.progetto.eccezioni.TrenoUniversalException;
 import com.progetto.model.PrenotazionePosto;
-
 import com.progetto.service.PostoService;
 import com.progetto.service.PrenotazionePostoService;
 import com.progetto.service.TrenoService;
@@ -39,18 +38,47 @@ public class TrenoController {
 	@Autowired 
 	HttpSession session;
 	
-	@GetMapping("addTreno")
-	public String addTreno() {
-		return "AddTreno";
+	/////////////////
+	
+	@GetMapping("addTreni")
+	public String addTrenoAlf() {
+		return "AddTreni2";
 	}
 	
-	@PostMapping("/insertTreno")
-	public String insertTreno(@ModelAttribute("stringa") String string) throws TrenoUniversalException {
+	@PostMapping("/AddTreni")
+	public String insertTreni(@RequestParam("marca") String marca, @RequestParam("ComposizioneTreno") String composizioneTreno) throws TrenoUniversalException {
+
+		if(marca.equals("TN")) {
+			trenoservice.addTrenoTN(composizioneTreno);
+		}else if(marca.equals("FR")) {
+			trenoservice.addTrenoFR(composizioneTreno);
+		}else {
+			System.out.println("no");
+		}
 		
-		trenoservice.addTrenoTN(string);
-//		return "redirect:/trenoReport";
-		return "redirect:/treni";
+	    System.out.println("Valore selezionato della marca: " + marca);
+	    System.out.println("Valore inserito in ComposizioneTreno: " + composizioneTreno);
+	    
+	    // In seguito, puoi reindirizzare l'utente a una pagina o effettuare altre operazioni necessarie.
+	    return "redirect:/treni";
 	}
+	
+	//////////////
+	
+//	@GetMapping("addTreno")
+//	public String addTreno() {
+//		return "AddTreno";
+//	}
+//	
+//	
+//	
+//	@PostMapping("/insertTreno")
+//	public String insertTreno(@ModelAttribute("stringa") String string) throws TrenoUniversalException {
+//		
+//		trenoservice.addTrenoTN(string);
+////		return "redirect:/trenoReport";
+//		return "redirect:/treni";
+//	}
 
 	
 	//Carica tutti i treni

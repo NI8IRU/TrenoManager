@@ -15,8 +15,6 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 import com.progetto.builder.ConcreteBuilder;
-import com.progetto.eccezioni.TrenoIrregolareException;
-import com.progetto.eccezioni.TrenoUniversalException;
 import com.progetto.factory.FRFactory;
 import com.progetto.factory.TNFactory;
 import com.progetto.model.Treno;
@@ -30,74 +28,67 @@ public class TrenoDAO {
 
 	@Autowired
 	HibernateTemplate hibernateTemplate;
-	
+
 	@Autowired
 	UtenteService utenteservice;
-	
-	@Autowired 
+
+	@Autowired
 	HttpSession session;
-	
 
 	@Autowired
 	SessionFactory factory;
-	
+
 	@Autowired
 	ColoreDao coloredao;
 
 	@Transactional
-	public void addTrenoFR(String stringa) throws TrenoUniversalException {
+	public void addTrenoFR(String stringa) {
 		FRFactory frFactory = new FRFactory();
-		
+
 		ConcreteBuilder builder = new ConcreteBuilder(frFactory);
 		Treno treno = new Treno();
-		try {
-			treno = builder.assemblaTreno(stringa);
-		} catch (TrenoIrregolareException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+
+		treno = builder.assemblaTreno(stringa);
+
 		System.out.println(treno);
-		
-		for(int i=0; i<treno.getTreno().size(); i++) {
+		System.out.println("treno aggiunto");
+
+		for (int i = 0; i < treno.getTreno().size(); i++) {
 			coloredao.addColore(treno.getTreno().get(i).getColore());
 		}
-		
+
 		Utente utenteLoggato = (Utente) session.getAttribute("utenteLoggato");
 //		utenteLoggato.getListaTreni().add(treno);
 //		utenteservice.updateUtente(utenteLoggato);
 		Utente utenteStaccato = utenteservice.getUtenteById(utenteLoggato.getId());
-	    utenteStaccato.getListaTreni().add(treno);
-	    utenteservice.updateUtente(utenteStaccato);
+		utenteStaccato.getListaTreni().add(treno);
+		utenteservice.updateUtente(utenteStaccato);
 		hibernateTemplate.save(treno);
 	}
-	
+
 	@Transactional
-	public void addTrenoTN(String stringa) throws TrenoUniversalException {
+	public void addTrenoTN(String stringa) {
 		TNFactory tnFactory = new TNFactory();
-		
+
 		ConcreteBuilder builder = new ConcreteBuilder(tnFactory);
 		Treno treno = new Treno();
-		try {
-			treno = builder.assemblaTreno(stringa);
-		} catch (TrenoIrregolareException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+
+		treno = builder.assemblaTreno(stringa);
+
 		System.out.println(treno);
-		for(int i=0; i<treno.getTreno().size(); i++) {
+		for (int i = 0; i < treno.getTreno().size(); i++) {
 			coloredao.addColore(treno.getTreno().get(i).getColore());
 		}
-		
+
 		Utente utenteLoggato = (Utente) session.getAttribute("utenteLoggato");
 //		utenteLoggato.getListaTreni().add(treno);
 //		utenteservice.updateUtente(utenteLoggato);
 		Utente utenteStaccato = utenteservice.getUtenteById(utenteLoggato.getId());
-	    utenteStaccato.getListaTreni().add(treno);
-	    utenteservice.updateUtente(utenteStaccato);
+		utenteStaccato.getListaTreni().add(treno);
+		utenteservice.updateUtente(utenteStaccato);
 		hibernateTemplate.save(treno);
 	}
-	
-	
+
 //	@Transactional
 //	public void addTreno(TrenoDTO treno) {
 //		hibernateTemplate.save(treno);
@@ -109,84 +100,82 @@ public class TrenoDAO {
 
 	@Transactional
 	public Treno getTrenoById(Long id) {
-		Treno treno= hibernateTemplate.get(Treno.class, id);
+		Treno treno = hibernateTemplate.get(Treno.class, id);
 		return treno;
 	}
-	
 
-	public List<Vagone> getAllVagoniByTrenoId(Long id){
+	public List<Vagone> getAllVagoniByTrenoId(Long id) {
 		Session session = factory.openSession();
-	      Transaction tx = null;
-	      List<Vagone> listavagoni = null; 
-	      try {
-	         tx = session.beginTransaction();
-	         
-	         String hql = "from Vagone where TrenoId = :id";
-	         Query<Vagone> query = session.createQuery(hql, Vagone.class);
-	         
-	         query.setParameter("id", id);
-	         
-	         
-	         listavagoni = query.getResultList();
-	         tx.commit();
-	      } catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      } finally {
-	         session.close(); 
-	      }
-	      return listavagoni;
+		Transaction tx = null;
+		List<Vagone> listavagoni = null;
+		try {
+			tx = session.beginTransaction();
+
+			String hql = "from Vagone where TrenoId = :id";
+			Query<Vagone> query = session.createQuery(hql, Vagone.class);
+
+			query.setParameter("id", id);
+
+			listavagoni = query.getResultList();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listavagoni;
 	}
 
-	public List<Vagone> getAllVagoniPasseggeriByTrenoId(Long id){
+	public List<Vagone> getAllVagoniPasseggeriByTrenoId(Long id) {
 		Session session = factory.openSession();
-	      Transaction tx = null;
-	      List<Vagone> listavagoni = null; 
-	      try {
-	         tx = session.beginTransaction();
-	         
-	         String hql = "from Vagone where TrenoId = :id and tipoVagone = 'PASSEGGERI'";
-	         Query<Vagone> query = session.createQuery(hql, Vagone.class);
-	         
-	         query.setParameter("id", id);
-	         
-	         
-	         listavagoni = query.getResultList();
-	         tx.commit();
-	      } catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      } finally {
-	         session.close(); 
-	      }
-	      return listavagoni;
+		Transaction tx = null;
+		List<Vagone> listavagoni = null;
+		try {
+			tx = session.beginTransaction();
+
+			String hql = "from Vagone where TrenoId = :id and tipoVagone = 'PASSEGGERI'";
+			Query<Vagone> query = session.createQuery(hql, Vagone.class);
+
+			query.setParameter("id", id);
+
+			listavagoni = query.getResultList();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listavagoni;
 	}
 
-	public List<PostoASedere> getAllPostiByVagoneId(Long id){
+	public List<PostoASedere> getAllPostiByVagoneId(Long id) {
 		Session session = factory.openSession();
-	      Transaction tx = null;
-	      List<PostoASedere> listaposti = null; 
-	      try {
-	         tx = session.beginTransaction();
-	         
-	         String hql = "from PostoASedere where VagoneId = :id";
-	         Query<PostoASedere> query = session.createQuery(hql, PostoASedere.class);
-	         
-	         query.setParameter("id", id);
-	         
-	         
-	         listaposti = query.getResultList();
-	         tx.commit();
-	      } catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      } finally {
-	         session.close(); 
-	      }
-	      return listaposti;
+		Transaction tx = null;
+		List<PostoASedere> listaposti = null;
+		try {
+			tx = session.beginTransaction();
+
+			String hql = "from PostoASedere where VagoneId = :id";
+			Query<PostoASedere> query = session.createQuery(hql, PostoASedere.class);
+
+			query.setParameter("id", id);
+
+			listaposti = query.getResultList();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listaposti;
 	}
 
-	
 	@Transactional
 	public void updateTreno(Treno treno) {
 		hibernateTemplate.update(treno);
@@ -196,7 +185,5 @@ public class TrenoDAO {
 	public void deleteTreno(Long id) {
 		hibernateTemplate.delete(hibernateTemplate.load(Treno.class, id));
 	}
-	
-	
-}
 
+}

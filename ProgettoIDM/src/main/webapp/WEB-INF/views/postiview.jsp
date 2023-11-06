@@ -17,19 +17,18 @@
 
 .vagone {
  display: grid;
-  grid-template-columns: 10% 48% 10% 10%;
+  grid-template-columns: 10% 60% 10% 10%;
   grid-gap: 10px;
   background-color: #2196F3;
   padding: 10px;
-  width: 40%;
-  border-radius:10px 10px 0 0
+  width: 50%;
 }
 
 .posto {
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   border: 1px solid #999;
-  margin: 15px 5px;
+  margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,8 +48,8 @@
 }
 
 .libero:hover{
-	 width: 60px; /* Larghezza aumentata al passaggio del mouse sopra */
-    height: 60px; /* Altezza aumentata al passaggio del mouse sopra */
+	width: 55px; /* Larghezza aumentata al passaggio del mouse sopra */
+    height: 55px; /* Altezza aumentata al passaggio del mouse sopra */
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5); /* Ombra più pronunciata e colorata */
 }
 
@@ -58,15 +57,11 @@
 	background-color: gray;
 }
 
+
 .contenitore-posto{
 	width:60px;
 	height:60px;
-	disply:flex;
-	justify-content:center;
-	align-items: center;
 }
-
-
 
 </style>
 <body>
@@ -80,7 +75,7 @@
 						corrispettivo dell'if else -->
 						<c:choose>
     						<c:when test="${!posto.occupato}">
-        						<div class="posto libero" onclick="selectSeat(this, '${posto.id}')" onmouseover="changeColor(this)" onmouseout="resetColor(this)">
+        						<div class="posto libero" onclick="selectSeat(this, '${posto.id}')" >
            			 				<div>${posto.id}</div>
             						
         						</div>
@@ -101,7 +96,7 @@
       			<!-- Campo nascosto per contenere l'elenco dei posti selezionati -->
       			<input type="hidden" name="postiSelezionati" id="postiSelezionati">
      			 <!-- Pulsante di invio per inviare la richiesta POST -->
-      			<button type="submit" class="btn btn-warning">Conferma Posti</button>
+      			<button id="confermaPosti" type="submit" class="btn btn-warning" disabled >Conferma Posti</button>
     		</form>
 
 	</div>
@@ -109,23 +104,34 @@
 	
 	<script>
 	var postiSelezionati = []; // Array per tenere traccia dei posti selezionati
-
-    //function changeColor(element) {
-      //element.style.backgroundColor = "#00FF00"; // Cambia il colore quando il mouse è sopra il posto
-    //}
-
-    //function resetColor(element) {
-      //element.style.backgroundColor = "#ccc"; // Ripristina il colore originale quando il mouse si sposta via
-    //}
+    
+	let buttonConfermaPosti = document.getElementById("confermaPosti");
+	
+	let input = document.getElementById("postiSelezionati")
 
     function selectSeat(element, postoId) {
-      // Cambia il colore quando un posto viene selezionato
-      element.style.backgroundColor = "#0000FF"; // Colore blu per i posti selezionati
-      postiSelezionati.push(postoId); // Aggiunge il posto selezionato all'array
-      // Aggiorna il campo nascosto con l'elenco dei posti selezionati
-      let input = document.getElementById("postiSelezionati")
-      input.value = postiSelezionati.join(",");
-      console.log(input)
+    	if(postiSelezionati.includes(postoId)){
+    		let index = postiSelezionati.indexOf(postoId)
+    		postiSelezionati.splice(index, 1)
+    		element.style.backgroundColor = "lightgreen"
+    		
+    	}else{
+    		// Cambia il colore quando un posto viene selezionato
+    	      element.style.backgroundColor = "#0000FF"; // Colore blu per i posti selezionati
+    	      postiSelezionati.push(postoId); // Aggiunge il posto selezionato all'array	
+    	}
+    	//Aggiorna il campo nascosto con l'elenco dei posti selezionati
+    	 input.value = postiSelezionati.join(",");
+         console.log(input)
+    	
+      	   if(input.value.trim() !== ""){
+    	  		buttonConfermaPosti.removeAttribute("disabled");
+   		   }else{
+    		  buttonConfermaPosti.setAttribute("disabled", true);
+      	   }
+      
+      
+     
     }
 </script>
 	

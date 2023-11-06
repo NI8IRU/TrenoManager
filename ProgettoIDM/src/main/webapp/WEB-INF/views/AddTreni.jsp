@@ -12,7 +12,7 @@
 	<div class="container mt-3">
 
 		<h1>Inserisci treni</h1>
-		<form id="insertForm" action="AddTreni" method="post">
+		<form id="insertForm" action="AddTren" method="post">
 			<div class="row">
 				<div class="col">
 					<div class="form-group">
@@ -34,13 +34,13 @@
 							placeholder="componi il tuo treno!" readonly>
 					</div>
 
-					<button id="btnLocomotiva" disabled onclick="LocomotivaClick('H')"
+					<button id="btnLocomotiva"  onclick="LocomotivaClick('H')"
 						class="btn btn-primary">Locomotiva - H</button>
-					<button id="btnPasseggeri" disabled onclick="PasseggeriClick('P')"
+					<button id="btnPasseggeri"  onclick="PasseggeriClick('P')"
 						class="btn btn-primary">Passeggeri - P</button>
-					<button id="btnRistorante" disabled onclick="RistoranteClick('R')"
+					<button id="btnRistorante"  onclick="RistoranteClick('R')"
 						class="btn btn-primary">Ristorante - R</button>
-					<button id="btnCargo" disabled onclick="CargoClick('C')"
+					<button id="btnCargo"  onclick="CargoClick('C')"
 						class="btn btn-primary">Cargo - C</button>
 				</div>
 			</div>

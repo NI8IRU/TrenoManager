@@ -12,7 +12,7 @@
 	<div class="container mt-3">
 
 		<h1>Crea Treno</h1>
-		<a href="addTreno" class="btn btn-primary"> Crea treno </a>
+		<a href="addTreni" class="btn btn-primary"> Crea treno </a>
 		<div class="row">
 
 			<table class="table table-hover">
