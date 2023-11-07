@@ -74,7 +74,7 @@
 						<!-- c:choose con all'interno c:when e c:otherwise sarebbe il 
 						corrispettivo dell'if else -->
 						<c:choose>
-    						<c:when test="${!postiOccupati.contains(posto.id)}">
+    						<c:when test="${!posto.occupato}">
         						<div class="posto libero" onclick="selectSeat(this, '${posto.id}')" >
            			 				<div>${posto.id}</div>
             						

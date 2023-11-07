@@ -45,6 +45,11 @@ public class TrenoController {
 		return "AddTreni2";
 	}
 	
+	@GetMapping("/")
+	public String home() {
+		return "homepage";
+	}
+	
 	@PostMapping("/AddTreni")
 	public String insertTreni(@RequestParam("marca") String marca, @RequestParam("ComposizioneTreno") String composizioneTreno) throws TrenoUniversalException {
 
@@ -87,43 +92,43 @@ public class TrenoController {
 		m.addAttribute("treni", trenoservice.getAllTreno());
 		System.out.println("lista treni" + trenoservice.getAllTreno());
 		
-		return "treni";
+		return "Treni2";
 	}
 	
 	
-	@GetMapping("/prenotaPosto/{id}")
-	public String prenotaPosto(@PathVariable(value="id") Long id, Model m) {
-		m.addAttribute("vagoni", trenoservice.getAllVagoniPasseggeriByTrenoId(id));
-		return "ScegliVagone";
-		
-	}
-	
-	@GetMapping("prenotaPosto/postiview/{id}")
-	public String postiview(@PathVariable(value="id") Long id, Model m) {
-		m.addAttribute("posti", trenoservice.getAllPostiByVagoneId(id));
-		return "postiview";
-	}
-	
-	
-	@PostMapping("prenotaPosto/postiview/ConfermaPrenotazione")
-	public String confermaPrenotazione(@ModelAttribute("postiSelezionati") String posti) {
-		
-		// crea un array di stringhe nel quale va a inserire tutte le sotto stringhe della 
-		// stringa originale
-		String[] numberStrings = posti.split(",");
-		
-		PrenotazionePosto prenotazione = new PrenotazionePosto();
-		prenotazioneservice.addPrenotazione(prenotazione, numberStrings);
-		
-		utenteservice.updatePrenotazioniUtente(prenotazione, prenotazione.getPrezzo());
-
-        for (int i = 0; i < numberStrings.length; i++) {
-            	postoservice.OccupaPostoById(Long.parseLong(numberStrings[i]));    
-        }
-		
-		System.out.println(posti);
-		return "redirect:/";
-	}
+//	@GetMapping("/prenotaPosto/{id}")
+//	public String prenotaPosto(@PathVariable(value="id") Long id, Model m) {
+//		m.addAttribute("vagoni", trenoservice.getAllVagoniPasseggeriByTrenoId(id));
+//		return "ScegliVagone";
+//		
+//	}
+//	
+//	@GetMapping("prenotaPosto/postiview/{id}")
+//	public String postiview(@PathVariable(value="id") Long id, Model m) {
+//		m.addAttribute("posti", trenoservice.getAllPostiByVagoneId(id));
+//		return "postiview";
+//	}
+//	
+//	
+//	@PostMapping("prenotaPosto/postiview/ConfermaPrenotazione")
+//	public String confermaPrenotazione(@ModelAttribute("postiSelezionati") String posti) {
+//		
+//		// crea un array di stringhe nel quale va a inserire tutte le sotto stringhe della 
+//		// stringa originale
+//		String[] numberStrings = posti.split(",");
+//		
+//		PrenotazionePosto prenotazione = new PrenotazionePosto();
+//		prenotazioneservice.addPrenotazione(prenotazione, numberStrings);
+//		
+//		utenteservice.updatePrenotazioniUtente(prenotazione, prenotazione.getPrezzo());
+//
+//        for (int i = 0; i < numberStrings.length; i++) {
+//            	postoservice.OccupaPostoById(Long.parseLong(numberStrings[i]));    
+//        }
+//		
+//		System.out.println(posti);
+//		return "redirect:/";
+//	}
 	
 	
 //	@GetMapping("ConfermaPrenotazione")

@@ -17,13 +17,17 @@ public class Treno {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String marca;
 	private String tipoTreno;
 	@OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "TrenoId")
 	private List<Vagone> treno = new ArrayList<>();
-
+	@OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "TrenoId")
+	private List<Viaggio> listaViaggi = new ArrayList<>();
+	
+	
 	public Treno() {
 		treno = new ArrayList<>();
 	}
@@ -40,11 +44,11 @@ public class Treno {
 		treno.remove(v);
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -60,6 +64,14 @@ public class Treno {
 		this.treno = treno;
 	}
 	
+	public List<Viaggio> getListaViaggi() {
+		return listaViaggi;
+	}
+
+	public void setListaViaggi(List<Viaggio> listaViaggi) {
+		this.listaViaggi = listaViaggi;
+	}
+
 	@Override
 	public String toString() {
 		return "Sono un treno";

@@ -1,9 +1,16 @@
 package com.progetto.vagoni;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import com.progetto.model.PrenotazionePosto;
 
 @Entity
 public class PostoASedere {
@@ -13,6 +20,7 @@ public class PostoASedere {
 	private Long id;
 	private boolean occupato = false;
 	private final float prezzo = 8.5f;
+	
 	
 	
 	public Long getId() {
@@ -46,6 +54,7 @@ public class PostoASedere {
 	public float getPrezzo() {
 		return prezzo;
 	}
+
 	
 	
 }

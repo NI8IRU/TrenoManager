@@ -37,6 +37,11 @@ public class UtenteController {
 		return "LoginUtente";
 	}
 	
+	@GetMapping("profilo")
+	public String profilo() {
+		return "Profilo";
+	}
+	
 	@PostMapping("/login")
 	public String processLogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
 	    // verifico le credenziali dell'utente
