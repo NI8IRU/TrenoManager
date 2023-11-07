@@ -4,33 +4,45 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.springframework.stereotype.Component;
 
 import com.progetto.vagoni.PostoASedere;
 
 @Entity
+@Component
 public class PrenotazionePosto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PrenotazioneId")
-	private List<PostoASedere> listaPosti;
 	private float prezzo;
-	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(name = "prenotazione_posti",
+          joinColumns = @JoinColumn(name = "prenotazione_id", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "posto_id", referencedColumnName = "id")
+	)
+	private List<PostoASedere> listaPosti;
+//	@ManyToOne
+//	@JoinColumn(name = "ViaggioId")
+//	private Viaggio viaggio;
 	
 	
 	public PrenotazionePosto() {
 		super();
 	}
-	public PrenotazionePosto(List<PostoASedere> listaPosti, float prezzo) {
+	public PrenotazionePosto(float prezzo) {
 		super();
-		this.listaPosti = listaPosti;
+		
 		this.prezzo = prezzo;
 	}
 	public Long getId() {
@@ -39,18 +51,30 @@ public class PrenotazionePosto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public List<PostoASedere> getListaPosti() {
-		return listaPosti;
-	}
-	public void setListaPosti(List<PostoASedere> listaPosti) {
-		this.listaPosti = listaPosti;
-	}
+	
 	public float getPrezzo() {
 		return prezzo;
 	}
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
+	public List<PostoASedere> getListaPosti() {
+		return listaPosti;
+	}
+	public void setListaPosti(List<PostoASedere> listaPosti) {
+		this.listaPosti = listaPosti;
+	}
+//	@Override
+//	public String toString() {
+//		return "PrenotazionePosto [id=" + id + ", prezzo=" + prezzo + ", listaPosti=" + listaPosti + ", viaggio="
+//				+ viaggio + "]";
+//	}
+//	public Viaggio getViaggio() {
+//		return viaggio;
+//	}
+//	public void setViaggio(Viaggio viaggio) {
+//		this.viaggio = viaggio;
+//	}
 	
 	
 	

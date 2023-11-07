@@ -26,7 +26,7 @@
 		mapping="/resources/**" />  <!-- indica che puo accedere a tutte le cartelle all'interno 
 		di resources -->
 		
-	<mvc:annotation-driven></mvc:annotation-driven>
+	
 
 
 	<!-- View Resolver -->
@@ -55,7 +55,7 @@
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3307/trenodb2" />
+			value="jdbc:mysql://localhost:3307/trenodb3" />
 		<property name="username" value="root" />
 		<property name="password" value="database" />
 
@@ -98,6 +98,7 @@
 				<value>com.progetto.tn_vagoni.TNRistorante</value>
 				<value>com.progetto.vagoni.PostoASedere</value>
 				<value>com.progetto.model.PrenotazionePosto</value>
+				<value>com.progetto.model.Viaggio</value>
 			</list>
 		</property>
 

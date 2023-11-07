@@ -25,7 +25,7 @@ public class Utente implements Bean{
 	@OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "UtenteId")
 	private List<PrenotazionePosto> listaPrenotazioni;
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "UtenteId")
     private List<Treno> listaTreni = new ArrayList<>();
