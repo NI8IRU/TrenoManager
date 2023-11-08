@@ -20,6 +20,9 @@ public class Utente implements Bean{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String username;
+	private String nome;
+	private String nazione;
+	private String codiceFiscale;
 	private String password;
 	private float saldo;
 	@OneToMany(cascade = CascadeType.ALL)
@@ -86,6 +89,30 @@ public class Utente implements Bean{
 
 	public void setSaldo(float saldo) {
 		this.saldo = saldo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNazione() {
+		return nazione;
+	}
+
+	public void setNazione(String nazione) {
+		this.nazione = nazione;
+	}
+
+	public String getCodiceFiscale() {
+		return codiceFiscale;
+	}
+
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
 	}
 	
 	
