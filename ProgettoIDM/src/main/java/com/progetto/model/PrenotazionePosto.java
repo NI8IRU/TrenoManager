@@ -1,7 +1,6 @@
 package com.progetto.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,11 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 import org.springframework.stereotype.Component;
-
 import com.progetto.vagoni.PostoASedere;
 
 @Entity
@@ -32,10 +27,6 @@ public class PrenotazionePosto {
           inverseJoinColumns = @JoinColumn(name = "posto_id", referencedColumnName = "id")
 	)
 	private List<PostoASedere> listaPosti;
-//	@ManyToOne
-//	@JoinColumn(name = "ViaggioId")
-//	private Viaggio viaggio;
-	
 	
 	public PrenotazionePosto() {
 		super();
@@ -64,19 +55,5 @@ public class PrenotazionePosto {
 	public void setListaPosti(List<PostoASedere> listaPosti) {
 		this.listaPosti = listaPosti;
 	}
-//	@Override
-//	public String toString() {
-//		return "PrenotazionePosto [id=" + id + ", prezzo=" + prezzo + ", listaPosti=" + listaPosti + ", viaggio="
-//				+ viaggio + "]";
-//	}
-//	public Viaggio getViaggio() {
-//		return viaggio;
-//	}
-//	public void setViaggio(Viaggio viaggio) {
-//		this.viaggio = viaggio;
-//	}
-	
-	
-	
 	
 }

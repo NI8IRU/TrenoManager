@@ -2,23 +2,18 @@ package com.progetto.dao;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Component;
-
 import com.progetto.model.PrenotazionePosto;
 import com.progetto.model.Treno;
-import com.progetto.model.Utente;
 import com.progetto.model.Viaggio;
 import com.progetto.service.PostoService;
 import com.progetto.service.PrenotazionePostoService;
@@ -59,7 +54,6 @@ public class ViaggioDao {
 		viaggio.setStazioneDestinazione(stazioneDestinazione);
 		
 		trenoservice.getTrenoById(Long.parseLong(trenoId)).getListaViaggi().add(viaggio);
-//		hibernateTemplate.save(viaggio);
 	}
 
 	public List<Viaggio> getAllViaggi() {
@@ -134,34 +128,13 @@ public class ViaggioDao {
 		      return treno;
 		   } 
 	
-//	public void updatePrenotazione(Long idPrenotazione, Long idViaggio) {
-//		Viaggio viaggio = findViaggioById(idViaggio);
-//	    PrenotazionePosto prenotazione = prenotazioneservice.findPrenotazioneById(idPrenotazione);
-//	    
-//	    viaggio.getListaPrenotazioni().add(prenotazione);
-//		updateViaggio(viaggio);
-//	}
-	
-	
-	
-	
 	public void updatePrenotazione(Long idPrenotazione) {
 	    Long idViaggio = (Long) session.getAttribute("viaggioId");
 	    Viaggio viaggio = findViaggioById(idViaggio);
 	    PrenotazionePosto prenotazione = prenotazioneservice.findPrenotazioneById(idPrenotazione);
 
-//	    prenotazione.setViaggio(viaggio);
-
 	    viaggio.getListaPrenotazioni().add(prenotazione);
 
 	    updateViaggio(viaggio);
-	}
-
-//	public void occupaPostiViaggio(String[] listaPosti, Long idViaggio) {
-//		
-//		for(int i=0; i<listaPosti.length; i++) {
-//			findViaggioById(idViaggio).getListaPosti().add(postoservice.findPostoById(Long.parseLong(listaPosti[i])));
-//		}
-//	}
-	
+	}	
 }

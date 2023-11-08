@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,9 @@ public class TrenoService {
 
 	@Autowired
 	TrenoDAO trenoDAO;
+	
+	@Autowired
+	HttpSession session;
 
 	public void addTrenoFR(String stringa) throws TrenoUniversalException {
 		controlloAndCostruzione(stringa, "FR");
@@ -133,9 +138,11 @@ public class TrenoService {
 			}
 		} catch (TrenoIrregolareException e) {
 			System.out.println(e.soluzione());
+			session.setAttribute("msg", e.soluzione());
 			e.printStackTrace();
 		} catch (TrenoUniversalException e) {
 			System.out.println("La sigla contiene caratteri non ammessi, caratteri ammessi: 'H,P,R,C'");
+			session.setAttribute("msg", "La sigla contiene caratteri non ammessi, caratteri ammessi: 'H,P,R,C'");
 			e.printStackTrace();
 		}
 	}

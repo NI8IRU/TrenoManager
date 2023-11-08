@@ -12,6 +12,10 @@
 	<div class="container mt-3">
 
 		<h1>Inserisci treni</h1>
+				<c:if test="${not empty msg }">
+							<h5 class="text-success">${msg }</h5>
+							<c:remove var="msg" />
+						</c:if>
 		<form id="insertForm" action="AddTren" method="post">
 			<div class="row">
 				<div class="col">

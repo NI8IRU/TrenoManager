@@ -6,14 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.progetto.eccezioni.TrenoUniversalException;
-import com.progetto.model.PrenotazionePosto;
 import com.progetto.service.PostoService;
 import com.progetto.service.PrenotazionePostoService;
 import com.progetto.service.TrenoService;
@@ -25,51 +21,51 @@ public class TrenoController {
 
 	@Autowired
 	TrenoService trenoservice;
-	
-	@Autowired 
+
+	@Autowired
 	PostoService postoservice;
-	
+
 	@Autowired
 	PrenotazionePostoService prenotazioneservice;
-	
+
 	@Autowired
 	UtenteService utenteservice;
-	
-	@Autowired 
+
+	@Autowired
 	HttpSession session;
-	
+
 	/////////////////
-	
+
 	@GetMapping("addTreni")
 	public String addTrenoAlf() {
 		return "AddTreni2";
 	}
-	
+
 	@GetMapping("/")
 	public String home() {
 		return "homepage";
 	}
-	
-	@PostMapping("/AddTreni")
-	public String insertTreni(@RequestParam("marca") String marca, @RequestParam("ComposizioneTreno") String composizioneTreno) throws TrenoUniversalException {
 
-		if(marca.equals("TN")) {
+	@PostMapping("/AddTreni")
+	public String insertTreni(@RequestParam("marca") String marca,
+			@RequestParam("ComposizioneTreno") String composizioneTreno) throws TrenoUniversalException {
+
+		if (marca.equals("TN")) {
 			trenoservice.addTrenoTN(composizioneTreno);
-		}else if(marca.equals("FR")) {
+		} else if (marca.equals("FR")) {
 			trenoservice.addTrenoFR(composizioneTreno);
-		}else {
+		} else {
 			System.out.println("no");
 		}
-		
-	    System.out.println("Valore selezionato della marca: " + marca);
-	    System.out.println("Valore inserito in ComposizioneTreno: " + composizioneTreno);
-	    
-	    // In seguito, puoi reindirizzare l'utente a una pagina o effettuare altre operazioni necessarie.
-	    return "redirect:/treni";
+
+		System.out.println("Valore selezionato della marca: " + marca);
+		System.out.println("Valore inserito in ComposizioneTreno: " + composizioneTreno);
+
+		return "AddTreni2";
 	}
-	
+
 	//////////////
-	
+
 //	@GetMapping("addTreno")
 //	public String addTreno() {
 //		return "AddTreno";
@@ -85,17 +81,15 @@ public class TrenoController {
 //		return "redirect:/treni";
 //	}
 
-	
-	//Carica tutti i treni
+	// Carica tutti i treni
 	@GetMapping("/treni")
 	public String getAllTreni(Model m) {
 		m.addAttribute("treni", trenoservice.getAllTreno());
 		System.out.println("lista treni" + trenoservice.getAllTreno());
-		
+
 		return "Treni2";
 	}
-	
-	
+
 //	@GetMapping("/prenotaPosto/{id}")
 //	public String prenotaPosto(@PathVariable(value="id") Long id, Model m) {
 //		m.addAttribute("vagoni", trenoservice.getAllVagoniPasseggeriByTrenoId(id));
@@ -129,19 +123,17 @@ public class TrenoController {
 //		System.out.println(posti);
 //		return "redirect:/";
 //	}
-	
-	
+
 //	@GetMapping("ConfermaPrenotazione")
 //	public String confermaPrenotazione() {
 //		return "ConfermaPrenotazione";
 //	}
-	
-	
+
 //	@GetMapping("/treniView")
 //	public String treniView() {
 //		return "treniView";
 //	}
-	
+
 //	@GetMapping("addTreno")
 //	public String addTreno() {
 //		return "AddTreno";
@@ -153,7 +145,7 @@ public class TrenoController {
 ////		return "redirect:/trenoReport";
 //		return "AddTreno";
 //	}
-	
+
 //	@GetMapping("/employeeReport")
 //	public String loadEmployee(Model m) {
 //		m.addAttribute("employee", employeeService.getAllEmp());

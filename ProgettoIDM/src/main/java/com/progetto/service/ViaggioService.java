@@ -2,14 +2,10 @@ package com.progetto.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.progetto.dao.ViaggioDao;
-import com.progetto.model.PrenotazionePosto;
 import com.progetto.model.Treno;
 import com.progetto.model.Viaggio;
 import com.progetto.vagoni.PostoASedere;
