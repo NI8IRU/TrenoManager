@@ -14,6 +14,8 @@
   http://www.springframework.org/schema/mvc 
   http://www.springframework.org/schema/mvc/spring-mvc.xsd
   ">
+  
+  
 
 <!--  Component scan a cui diciamo che il base-package si chiama "com.demo" e di scannerizzarlo -->
 	<context:component-scan base-package="com.progetto" />
