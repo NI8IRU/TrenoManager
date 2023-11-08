@@ -56,14 +56,13 @@ tr:nth-child(even) {
 					MENU <i class="fa fa-caret-down"></i>
 				</button>
 				<div class="w3-dropdown-content w3-bar-block w3-card-4">
-					<a href="addTreno" class="w3-bar-item w3-button">Nuovo Treno</a> <a
-						href="addTreni" class="w3-bar-item w3-button">Nuovo Treno 2</a> <a
+					<a href="treni" class="w3-bar-item w3-button">Treni</a> <a
 						href="myTrain" class="w3-bar-item w3-button">I miei treni</a> <a
 						href="profilo" class="w3-bar-item w3-button">Profilo</a>
 				</div>
 			</div>
 			<a
-				href="HomePage"
+				href="logout"
 				class="w3-bar-item w3-button w3-padding-large w3-hide-small">LOGOUT</a>
 		</div>
 		<!-- 

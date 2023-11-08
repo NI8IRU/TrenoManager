@@ -42,6 +42,11 @@ public class UtenteController {
 		return "Profilo";
 	}
 	
+	@GetMapping("logout")
+	public String logout() {
+		return "homepage";
+	}
+	
 	@PostMapping("/login")
 	public String processLogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
 	    // verifico le credenziali dell'utente
@@ -51,7 +56,7 @@ public class UtenteController {
 	        // Le credenziali sono corrette, quindi registra l'utente nella sessione
 	        session.setAttribute("utenteLoggato", utente);
 //	        return "UtenteDashboard"; // Reindirizza a una pagina dopo il login
-	        return "redirect:/treni";
+	        return "homepage2";
 	    } else {
 	        // credenziali errate
 	    	session.setAttribute("msg", "Invalid data");

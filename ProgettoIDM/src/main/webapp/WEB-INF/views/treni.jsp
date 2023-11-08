@@ -36,7 +36,6 @@
 							<td><a href="prenotaPosto/${treno.id}" class="btn btn-warning">
 									Modifica </a></td>
 							
-							
 						</tr>
 					</c:forEach>
 				</tbody>
