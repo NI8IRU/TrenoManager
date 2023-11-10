@@ -30,14 +30,20 @@
 							<td>${vagone.marca}</td>
 							<td>${vagone.tipoVagone}</td>
 							
-							<td><a href="postiview/${vagone.id}" class="btn btn-warning">
+							<!--  <td><a href="postiview/${vagone.id}" class="btn btn-warning">
 									Prenota </a></td>
-							
+							-->
+							<td>
+								<a href="postiview/${viaggioId}/${vagone.id}" class="btn btn-warning">
+        							Prenota 
+        						</a>
+        					</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
+		
 	</div>
 
 </body>

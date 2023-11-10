@@ -22,12 +22,12 @@ public class PostoDao {
 	@Autowired
 	HibernateTemplate hibernateTemplate;
 	
-	@Transactional
-	public void OccupaPostoById(Long id) {
-		PostoASedere posto = findPostoById(id);
-		posto.occupaPosto();
-		hibernateTemplate.update(posto);
-	}
+//	@Transactional
+//	public void OccupaPostoById(Long id) {
+//		PostoASedere posto = findPostoById(id);
+//		posto.occupaPosto();
+//		hibernateTemplate.update(posto);
+//	}
 
 	
 	public PostoASedere findPostoById(Long id) {

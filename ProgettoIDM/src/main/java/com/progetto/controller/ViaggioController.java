@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.progetto.dao.ViaggioSearchDao;
+import com.progetto.dao.ViaggioSearchRequest;
 import com.progetto.model.PrenotazionePosto;
 import com.progetto.model.Viaggio;
 import com.progetto.service.PostoService;
@@ -52,6 +55,13 @@ public class ViaggioController {
 	
 	@Autowired
 	PrenotazionePosto prenotazione;
+
+	@Autowired
+	ViaggioSearchDao viaggioSearchDao;
+	
+	@Autowired
+	ViaggioSearchRequest viaggioRequest;
+
 	
 	@GetMapping("/createViaggio/{id}")
 	public String creteViaggio(@PathVariable(value="id") Long id, Model m) {
@@ -83,30 +93,62 @@ public class ViaggioController {
 		return "viaggi";
 	}
 	
-	@GetMapping("/prenotaPosto/{id}")
-	public String prenotaPosto(@PathVariable(value="id") Long id, Model m) {
-//		m.addAttribute("vagoni", trenoservice.getAllVagoniByTrenoId(viaggioservice.findTrenoByViaggio(id).getId()));
-//		m.addAttribute("posti", viaggioservice.getAllPostiByViaggioId(id));
-		
+	//CriteriaQuery
+		@PostMapping("/searchViaggi")
+	    public String eseguiQuery(
+	    		Model m,
+	    		@RequestParam String stazionePartenza,
+	    		@RequestParam String stazioneDestinazione,
+	    		@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime dataPartenza,
+	    		@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime dataArrivo
+	    		)
+		{
+	        
+	        viaggioRequest.setStazioneDestinazione(stazioneDestinazione);
+	        viaggioRequest.setStazionePartenza(stazionePartenza);
+	        viaggioRequest.setDataPartenza(dataPartenza);
+	        viaggioRequest.setDataArrivo(dataArrivo);
+	        
+
+	        List<Viaggio> risultatiQuery = viaggioSearchDao.
+	        		findAllByCriteria(viaggioRequest);
+
+	        for (Viaggio viaggio : risultatiQuery) {
+	            System.out.println("viaggio" + viaggio);
+	            // Aggiungi altre informazioni che vuoi stampare per ogni viaggio
+	        }
+	        System.out.println("stazioneDestinazione" + stazioneDestinazione);
+	        // Fai qualcosa con i risultati, ad esempio passali al model per essere visualizzati nella tua vista
+	        m.addAttribute("viaggiSearch", risultatiQuery);
+	        
+	        return "viaggi";
+	    }
+	
+	@GetMapping("/prenotaPosto/{viaggioId}")
+	public String prenotaPosto(@PathVariable(value="viaggioId") Long id, Model m) {		
 		m.addAttribute("vagoni", trenoservice.getAllVagoniPasseggeriByTrenoId(viaggioservice.getViaggioById(id).getTreno().getId()));
-		session.setAttribute("viaggioId", id);
+		m.addAttribute("viaggioId", id);
+		
 		return "ScegliVagone";
 		
 	}
 	
-	@GetMapping("prenotaPosto/postiview/{id}")
-	public String postiview(@PathVariable(value="id") Long id, Model m) {
+	@GetMapping("prenotaPosto/postiview/{viaggioId}/{vagoneId}")
+	public String postiview(
+			@PathVariable(value="viaggioId") Long viaggioId,
+			@PathVariable(value = "vagoneId") Long vagoneId, 
+			Model m
+			)
+	{
+		
 		List <PrenotazionePosto> listaPrenotazioni = 
-				prenotazioneservice.findPrenotazioniByViaggioId((Long) session.getAttribute("viaggioId"));
+				prenotazioneservice.findPrenotazioniByViaggioId(viaggioId);
 		for (PrenotazionePosto prenotazione : listaPrenotazioni) {
 		    System.out.println("ID della prenotazione: " + prenotazione.getId());
 		    System.out.println("Prezzo: " + prenotazione.getPrezzo());
 		}
-		
-//		List<PostoASedere> listaPosti = new ArrayList<>();
-//		for(int i=0; i<listaPrenotazioni.size(); i++) {
-//			listaPosti.addAll(prenotazioneservice.findPostiByPrenotazioneId(listaPrenotazioni.get(i).getId()));
-//		}
+		System.out.println("questo HHHHFHFHHFHFHHF:" + viaggioId);
+
 		
 		List<PostoASedere> listaPosti = new ArrayList<>();
 		for(int i=0; i<listaPrenotazioni.size(); i++) {
@@ -121,18 +163,13 @@ public class ViaggioController {
 		    System.out.println("ID del posto: " + posto.getId());
 		    
 		}
-//		List<PostoASedere> posti = prenotazione.getListaPosti();
-//	    for (PostoASedere posto : posti) {
-//	        System.out.println("ID Posto: " + posto.getId());
-//	        System.out.println("Occupato: " + posto.isOccupato());
-//	        System.out.println("Prezzo Posto: " + posto.getPrezzo());
-//	    }
-		m.addAttribute("posti", trenoservice.getAllPostiByVagoneId(id));
+
+		m.addAttribute("posti", trenoservice.getAllPostiByVagoneId(vagoneId));
 		m.addAttribute("postiOccupati", listaPostiId);
 		
-		for(int i=0; i<trenoservice.getAllPostiByVagoneId(id).size(); i++) {
-			if(listaPostiId.contains(trenoservice.getAllPostiByVagoneId(id).get(i).getId())) {
-				System.out.println("si" + trenoservice.getAllPostiByVagoneId(id).get(i));
+		for(int i=0; i<trenoservice.getAllPostiByVagoneId(vagoneId).size(); i++) {
+			if(listaPostiId.contains(trenoservice.getAllPostiByVagoneId(vagoneId).get(i).getId())) {
+				System.out.println("si" + trenoservice.getAllPostiByVagoneId(vagoneId).get(i));
 			} else {
 				System.out.println("no");
 			}
@@ -140,53 +177,34 @@ public class ViaggioController {
 		return "postiview";
 	}
 	
-	@PostMapping("prenotaPosto/postiview/ConfermaPrenotazione")
-	public String confermaPrenotazione(@ModelAttribute("postiSelezionati") String posti, Model m) {
-		System.out.println("bho" + session.getAttribute("viaggioId"));
+	@PostMapping("prenotaPosto/postiview/{viaggioId}/ConfermaPrenotazione")
+	public String confermaPrenotazione(
+			@ModelAttribute("postiSelezionati") String posti,
+			@PathVariable(value="viaggioId") Long viaggioId,
+			Model m) {
+		System.out.println("bho" + viaggioId);
 		// crea un array di stringhe nel quale va a inserire tutte le sotto stringhe della 
 		// stringa originale
 		String[] numberStrings = posti.split(",");
 		
 		Long prenotazioneId = prenotazioneservice.addPrenotazione(prenotazione, numberStrings);
 //		viaggioservice.updatePrenotazione(prenotazioneId, (Long) session.getAttribute("viaggioId"));
-		viaggioservice.updatePrenotazione(prenotazioneId);
+		viaggioservice.updatePrenotazione(prenotazioneId, viaggioId);
 		utenteservice.updatePrenotazioniUtente(prenotazione, prenotazione.getPrezzo());
-
-//        for (int i = 0; i < numberStrings.length; i++) {
-//            	postoservice.OccupaPostoById(Long.parseLong(numberStrings[i]));    
-//        }
-		
 		System.out.println(posti);
-		return "redirect:/";
+		
+		//cerca e aggiunge l'istanza di PrenotazionePosto al model
+		prenotazione = prenotazioneservice.findPrenotazioneById(prenotazioneId);
+		m.addAttribute("prenotazione", prenotazione);
+		
+		m.addAttribute("viaggio", viaggioservice.getViaggioById(viaggioId));
+		
+		
+		return "prenotazioneConfermata";
 	}
 	
-//	@PostMapping("prenotaPosto/confermaPrenotazione")
-//	public String conferemaPrenotazione(@ModelAttribute("postiSelezionati"))
 	
-//	@GetMapping("prenotaPosto/postiview/{id}")
-//	public String postiview(@PathVariable(value="id") Long id, Model m) {
-//		m.addAttribute("posti", trenoservice.getAllPostiByVagoneId(id));
-//		return "postiview";
-//	}
-//	
-//	
-//	@PostMapping("prenotaPosto/postiview/ConfermaPrenotazione")
-//	public String confermaPrenotazione(@ModelAttribute("postiSelezionati") String posti) {
-//		
-//		// crea un array di stringhe nel quale va a inserire tutte le sotto stringhe della 
-//		// stringa originale
-//		String[] numberStrings = posti.split(",");
-//		
-//		PrenotazionePosto prenotazione = new PrenotazionePosto();
-//		prenotazioneservice.addPrenotazione(prenotazione, numberStrings);
-//		
-//		utenteservice.updatePrenotazioniUtente(prenotazione, prenotazione.getPrezzo());
-//
-//        for (int i = 0; i < numberStrings.length; i++) {
-//            	postoservice.OccupaPostoById(Long.parseLong(numberStrings[i]));    
-//        }
-//		
-//		System.out.println(posti);
-//		return "redirect:/";
-//	}
+	
+	
+
 }

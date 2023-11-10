@@ -101,6 +101,31 @@ public class UtenteDAO {
 	    updateUtente(utenteStaccato);
 	}
 	
+	public Utente findUtenteByPrenotazioneId(Long prenotazioneId) {
+	       Session session = factory.openSession();
+		      Transaction tx = null;
+		      Utente utente = null; 
+		      try {
+		         tx = session.beginTransaction();
+		         
+		         String hql = "SELECT pp.utente FROM PrenotazionePosto pp WHERE pp.id = :prenotazioneId";
+		         
+		         Query<Utente> query = session.createQuery(hql, Utente.class);
+		         query.setParameter("prenotazioneId", prenotazioneId);
+		        
+		         
+		         utente = query.uniqueResult();
+		         tx.commit();
+		      } catch (HibernateException e) {
+		         if (tx!=null) tx.rollback();
+		         e.printStackTrace(); 
+		      } finally {
+		         session.close(); 
+		      }
+		      return utente;
+		   } 
+
+	
 //	public Utente loginUtente(String username, String password) {
 //		Session session = factory.openSession();
 //	      Transaction tx = null;

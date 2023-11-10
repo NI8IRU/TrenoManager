@@ -57,9 +57,9 @@
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/trenodb" />
+			value="jdbc:mysql://localhost:3307/trenodb4" />
 		<property name="username" value="root" />
-		<property name="password" value="password" />
+		<property name="password" value="database" />
 
 	</bean>
 
@@ -141,6 +141,20 @@
 	</bean>
 
 
+	<!-- Configurazione dell'EntityManagerFactory per JPA -->
+		<bean id="entityManagerFactory"
+		      class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		    <property name="dataSource" ref="ds" />
+		    <property name="packagesToScan" value="com.progetto" />
+		    <property name="jpaVendorAdapter">
+		        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		            <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+		            <property name="showSql" value="true" />
+		        </bean>
+		    </property>
+		</bean>
+		
+		
 
 
 </beans>

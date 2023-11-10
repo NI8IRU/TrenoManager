@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +35,7 @@ tr:nth-child(even) {
 	background-color: #dddddd;
 }
 </style>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 <body>
 
@@ -43,16 +45,39 @@ tr:nth-child(even) {
 			<a
 				class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
 				href="javascript:void(0)" onclick="myFunction()"
-				title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a> <a
-				href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a> <a
-				href="#contact"
-				class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTATTI</a>
-			<a href="insertUtente"
-				class="w3-bar-item w3-button w3-padding-large w3-hide-small">REGISTRATI</a>
-			<a href="loginUtente"
-				class="w3-bar-item w3-button w3-padding-large w3-hide-small">ACCEDI</a>
+				title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a> 
+				<a href="/" class="w3-bar-item w3-button w3-padding-large">HOME</a> 
+				<a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTATTI</a>
+				
+				<c:if test="${not empty utenteLoggato }">
+							<a class="w3-bar-item w3-button w3-padding-large w3-hide-small">Benvenut*
+							${utenteLoggato.username}</a>
+
+							<div class="w3-dropdown-hover w3-hide-small">
+								<button class="w3-padding-large w3-button" title="More">
+									MENU <i class="fa fa-caret-down"></i>
+								</button>
+								<div class="w3-dropdown-content w3-bar-block w3-card-4">
+									<a href="treni" class="w3-bar-item w3-button">Treni</a> <a
+										href="myTrain" class="w3-bar-item w3-button">I miei treni</a> <a
+										href="profilo" class="w3-bar-item w3-button">Profilo</a>
+								</div>
+							</div>
+							
+			</c:if>
+			<c:if test="${!not empty utenteLoggato }">
+					<a href="addUtente"
+						class="w3-bar-item w3-button w3-padding-large w3-hide-small">REGISTRATI</a>
+					<a href="loginUtente"
+						class="w3-bar-item w3-button w3-padding-large w3-hide-small">ACCEDI</a>
+			</c:if>
 		</div>
 		<!-- 
+		
+		
+		
+		
+		
 		<a href="javascript:void(0)"
 			class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i
 			class="fa fa-search"></i></a>
@@ -111,20 +136,20 @@ tr:nth-child(even) {
 		<!-- The Band Section -->
 		<div class="w3-container w3-content w3-center w3-padding-64"
 			style="max-width: 800px" id="band">
-			<h2 class="w3-wide">THE BEAST TRAINS</h2>
+			<h1 class="w3-wide">Treno Manager</h1>
 			<p class="w3-opacity">
 				<i>Noi amiamo i treni</i>
 			</p>
-			<p class="w3-justify">Nel trasporto ferroviario, un treno � una
+			<p class="w3-justify">Nel trasporto ferroviario, un treno è una
 				serie di carrozze ferroviarie collegate che corrono lungo un binario
 				ferroviario e trasportano persone o merci, tipicamente trainate o
-				spinte da una o pi� locomotive. Il treno � adatto alla circolazione
+				spinte da una o più locomotive. Il treno è adatto alla circolazione
 				sulle ferrovie composto da un insieme di elementi identificabili,
 				uniti permanentemente o temporaneamente a formare un unico
 				convoglio. Ha rappresentato un punto di svolta per l'evoluzione
 				industriale delle nazioni ottocentesche, arrivando a rivestire per
 				molti anni un ruolo centrale nella struttura politica, economica e
-				sociale delle nazioni, nonch� conquistando un posto di primo piano
+				sociale delle nazioni, nonché conquistando un posto di primo piano
 				nell'immaginario collettivo.</p>
 			<br>
 			<p class="w3-opacity">
@@ -169,7 +194,7 @@ tr:nth-child(even) {
 							</p>
 							<p class="w3-opacity">27600 cv</p>
 							<p>Una potente ed aerodinamica locomotiva per le alte
-								velocit�.</p>
+								velocità.</p>
 							<!--  
 							<button class="w3-button w3-black w3-margin-bottom"
 								onclick="document.getElementById('ticketModal').style.display='block'">Buy
@@ -186,7 +211,7 @@ tr:nth-child(even) {
 								<b>Trenord</b>
 							</p>
 							<p class="w3-opacity">16000 cv</p>
-							<p>Confortevole locomotiva per il pi� classico dei regionali.</p>
+							<p>Confortevole locomotiva per il più classico dei regionali.</p>
 							<!--  
 							<button class="w3-button w3-black w3-margin-bottom"
 								onclick="document.getElementById('ticketModal').style.display='block'">Buy
@@ -203,8 +228,8 @@ tr:nth-child(even) {
 								<b>CarGo</b>
 							</p>
 							<p class="w3-opacity">35000 cv</p>
-							<p>Questo bestione da 35000 cavalli � il pi� potente della
-								categoria, per i carichi pi� pesanti.</p>
+							<p>Questo bestione da 35000 cavalli è il più potente della
+								categoria, per i carichi più pesanti.</p>
 							<!--  
 							<button class="w3-button w3-black w3-margin-bottom"
 								onclick="document.getElementById('ticketModal').style.display='block'">Buy

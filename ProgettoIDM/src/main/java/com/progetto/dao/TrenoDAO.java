@@ -103,6 +103,30 @@ public class TrenoDAO {
 		Treno treno = hibernateTemplate.get(Treno.class, id);
 		return treno;
 	}
+	
+	public List<Treno> getAllTrenoByUtenteId(Long id) {
+		Transaction tx = null;
+		Session session = factory.openSession();
+		List<Treno> listaTreni = null;
+		try {
+			tx = session.beginTransaction();
+
+			String hql2 = "from Treno where UtenteId = :id";
+			Query<Treno> query = session.createQuery(hql2, Treno.class);
+
+			query.setParameter("id", id);
+
+			listaTreni = query.getResultList();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listaTreni;
+	}
 
 	public List<Vagone> getAllVagoniByTrenoId(Long id) {
 		Session session = factory.openSession();

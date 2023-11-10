@@ -41,8 +41,8 @@ public void addViaggio(LocalDateTime dataPartenza, LocalDateTime dataArrivo, Str
 		return viaggiodao.findTrenoByViaggio(id);
 	}
 	
-	public void updatePrenotazione(Long idPrenotazione) {
-		viaggiodao.updatePrenotazione(idPrenotazione);
+	public void updatePrenotazione(Long idPrenotazione, Long viaggioId) {
+		viaggiodao.updatePrenotazione(idPrenotazione, viaggioId);
 	}
 	
 	

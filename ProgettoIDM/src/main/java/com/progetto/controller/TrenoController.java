@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.progetto.eccezioni.TrenoUniversalException;
+import com.progetto.model.Utente;
 import com.progetto.service.PostoService;
 import com.progetto.service.PrenotazionePostoService;
 import com.progetto.service.TrenoService;
@@ -33,6 +34,9 @@ public class TrenoController {
 
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	Utente utente;
 
 	/////////////////
 
@@ -90,6 +94,13 @@ public class TrenoController {
 		return "Treni2";
 	}
 
+	@GetMapping("myTrain")
+	public String myTrain(Model m) {
+		utente = (Utente) session.getAttribute("utenteLoggato");
+		m.addAttribute("treniPerUtente", trenoservice.getAllTrenoByUtenteId(utente.getId()));
+		return "treniPerUtenteView";
+	}
+	
 //	@GetMapping("/prenotaPosto/{id}")
 //	public String prenotaPosto(@PathVariable(value="id") Long id, Model m) {
 //		m.addAttribute("vagoni", trenoservice.getAllVagoniPasseggeriByTrenoId(id));

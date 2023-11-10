@@ -131,10 +131,12 @@ public class TrenoService {
 			
 			if (marca.equals("FR")) {
 				trenoDAO.addTrenoFR(stringId);
+				session.setAttribute("successMsg", "Treno FR inserito con successo");
 			}
 			
 			if (marca.equals("TN")) {
 				trenoDAO.addTrenoTN(stringId);
+				session.setAttribute("successMsg", "Treno TN inserito con successo");
 			}
 		} catch (TrenoIrregolareException e) {
 			System.out.println(e.soluzione());
@@ -157,5 +159,10 @@ public class TrenoService {
 			}
 		}
 		return false;
+	}
+	
+	public List<Treno> getAllTrenoByUtenteId(Long id) {
+		return trenoDAO.getAllTrenoByUtenteId(id);
+
 	}
 }

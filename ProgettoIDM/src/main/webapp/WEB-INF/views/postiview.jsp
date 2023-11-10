@@ -22,6 +22,7 @@
   background-color: #2196F3;
   padding: 10px;
   width: 50%;
+  border-radius: 8px
 }
 
 .posto {
@@ -63,6 +64,9 @@
 	height:60px;
 }
 
+.bottoneConferma{
+	margin-left: 2rem
+}
 </style>
 <body>
 
@@ -96,7 +100,7 @@
       			<!-- Campo nascosto per contenere l'elenco dei posti selezionati -->
       			<input type="hidden" name="postiSelezionati" id="postiSelezionati">
      			 <!-- Pulsante di invio per inviare la richiesta POST -->
-      			<button id="confermaPosti" type="submit" class="btn btn-warning" disabled >Conferma Posti</button>
+      			<button id="confermaPosti" type="submit" class="btn btn-warning bottoneConferma" disabled >Conferma Posti</button>
     		</form>
 
 	</div>

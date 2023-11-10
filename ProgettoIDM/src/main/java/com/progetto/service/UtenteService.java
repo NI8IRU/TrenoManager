@@ -45,5 +45,9 @@ public class UtenteService {
 	public void updatePrenotazioniUtente(PrenotazionePosto prenotazione, float prezzo) {
 		utenteDAO.updatePrenotazioniUtente(prenotazione, prezzo);
 	}
+	
+	public Utente findUtenteByPrenotazioneId(Long prenotazioneId) {
+		return utenteDAO.findUtenteByPrenotazioneId(prenotazioneId);
+	}
 }
 

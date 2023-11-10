@@ -19,6 +19,9 @@ body {
 .mySlides {
 	display: none
 }
+.grey{
+ background-color: #D3D3D3;
+}
 </style>
 </head>
 <body>
@@ -29,7 +32,7 @@ body {
 				class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
 				href="javascript:void(0)" onclick="myFunction()"
 				title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a> <a
-				href="homeProfilo" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+				href="tornaHome" class="w3-bar-item w3-button w3-padding-large">HOME</a>
 			<a class="w3-bar-item w3-button w3-padding-large w3-hide-small">Benvenut*
 				${utenteLoggato.nome}</a>
 
@@ -43,32 +46,30 @@ body {
 						href="profilo" class="w3-bar-item w3-button">Profilo</a>
 				</div>
 			</div>
-			<a
-				href="logout"
+			<a href="logout"
 				class="w3-bar-item w3-button w3-padding-large w3-hide-small">LOGOUT</a>
 		</div>
-		</div>
+	</div>
 	<h3>Profilo</h3>
 	<div class="container mt-3">
 		<div class="row">
 			<div class="col">
-				<div class="form-group">
+				<div
+					style="margin: auto; width: 50%;border-radius:10px; border: 6px ridge black; padding: 10px;"
+					class="form-group">
 					<p>
 						Identificativo: <b>${utenteLoggato.id}</b>
 					</p>
-					<p>
+					<p class="grey">
 						Nome: <b>${utenteLoggato.nome}</b>
 					</p>
 					<p>
 						Username: <b>${utenteLoggato.username}</b>
 					</p>
 					<p>
-						Nazione: <b>${utenteLoggato.nazione}</b>
-					</p>
-					<p>
 						Codice fiscale: <b>${utenteLoggato.codiceFiscale}</b>
 					</p>
-										<p>
+					<p class="grey"> 
 						Saldo: <b>${utenteLoggato.saldo}</b>
 					</p>
 				</div>

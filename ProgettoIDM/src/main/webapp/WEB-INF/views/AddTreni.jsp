@@ -8,14 +8,30 @@
 <meta charset="ISO-8859-1">
 <%@include file="./base.jsp"%>
 </head>
+<style>
+.messaggioSuccesso{
+	color: green;
+}
+</style>
 <body>
 	<div class="container mt-3">
-
+	
+	<div>
 		<h1>Inserisci treni</h1>
 				<c:if test="${not empty msg }">
 							<h5 class="text-success">${msg }</h5>
 							<c:remove var="msg" />
 						</c:if>
+						
+				<c:if test="${not empty successMsg }">
+							<h5 class="messaggioSuccesso">${successMsg }</h5>
+							<c:remove var="successMsg" />
+						</c:if>
+						
+		</div>
+		
+		<a href="treni" class="btn btn-primary"> Visualizza Treni </a>
+		
 		<form id="insertForm" action="AddTren" method="post">
 			<div class="row">
 				<div class="col">

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
- taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Visualizza treni</title>
+<%@include file="./base.jsp"%>
+<title>Treni di {utenteLoggato.nome}</title>
 </head>
 <style>
 table {
@@ -25,32 +25,33 @@ tr:nth-child(even) {
 }
 </style>
 <body>
-				<h4>Filtra per data</h4>
-				<br>
-				<p>Dal:</p>
-				<input id="DataDa" name="Date" type="date">
-				<p>Al:</p>
-				<input id="DataA" name="Date" type="date">
-				<button id="cerca" class="btn btn-primary">Cerca</button>
-	<table>
-		<tr>
-			<th>Data creazione</th>
-			<th>Composizione treno</th>
-			<th>Marca</th>
-			<th>Tipo treno</th>
-		</tr>
-		<%
-		for (int i = 0; i < 0/*lunghezza lista treni*/; i++) {
-		%>
-		<tr>
-			<td>${DataCreazione}</td>
-			<td>${ComposizioneTreno}</td>
-			<td>${Marca}</td>
-			<td>${TipoTreno}</td>
-		</tr>
-		<%
-		}
-		%>
-	</table>
+	<div class="container mt-3">
+
+		<h3>Ciao ${utenteLoggato.nome} ecco i tuoi treni</h3>
+
+		<div class="row">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Marca</th>
+						<th>Tipo Treno</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="treno" items="${treniPerUtente}">
+						<tr>
+							<td class="table-plus">${treno.id}</td>
+							<td>${treno.marca}</td>
+							<td>${treno.tipoTreno}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<a href="${pageContext.request.contextPath }/"
+				class="btn btn-warning"> Back </a>
+	</div>
+
 </body>
 </html>

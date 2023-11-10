@@ -7,14 +7,38 @@
 <meta charset="ISO-8859-1">
 <%@include file="./base.jsp"%>
 </head>
+<style>
+.head{
+	display: flex;
+	justify-content: space-between;
+}
+.messaggioSuccesso{
+	color: green;
+}
+.bottoneTreni{
+    display: flex;
+    align-items: center;
+}
+</style>
 <body>
 	<div class="container mt-3">
-
-		<h1>Inserisci treni</h1>
+	<div class="head">
+		<div>
+			<h1>Inserisci treni</h1>
 				<c:if test="${not empty msg }">
 							<h5 class="text-danger">${msg }</h5>
 							<c:remove var="msg" />
 						</c:if>
+						
+						
+						<c:if test="${not empty successMsg }">
+							<h5 class="messaggioSuccesso">${successMsg }</h5>
+							<c:remove var="successMsg" />
+						</c:if>
+						
+		</div>
+		<a href="treni" class="btn btn-primary bottoneTreni"> Visualizza Treni </a>
+	</div>				
 		<form id="insertForm" action="AddTreni" method="post">
 			<div class="row">
 				<div class="col">

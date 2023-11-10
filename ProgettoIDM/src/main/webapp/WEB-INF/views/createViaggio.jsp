@@ -53,7 +53,7 @@
 					</div>
 					</div>
 				</div>
-			</div>
+			
 			<a href="${pageContext.request.contextPath }/"
 				class="btn btn-warning"> Indietro </a>
 			<button type="submit" id="ins" class="btn btn-primary">Inserisci</button>

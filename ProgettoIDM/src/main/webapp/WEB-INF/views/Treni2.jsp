@@ -27,6 +27,8 @@
 			<a href="viaggi" class="btn btn-primary"> Prenota Viaggio </a>
 		</div>
 	</div>
+	
+	
 		<div class="row">
 
 			<table class="table table-hover">
@@ -55,6 +57,8 @@
 			</table>
 		</div>
 	</div>
+
+
 
 </body>
 </html>

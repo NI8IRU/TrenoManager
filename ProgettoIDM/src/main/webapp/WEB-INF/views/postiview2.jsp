@@ -22,6 +22,7 @@
   background-color: #2196F3;
   padding: 10px;
   width: 50%;
+  border-radius: 8px
 }
 
 .posto {

@@ -13,9 +13,9 @@ public class PostoService {
 	@Autowired
 	PostoDao postodao;
 	
-	public void OccupaPostoById(Long id) {
-		postodao.OccupaPostoById(id);
-	}
+//	public void OccupaPostoById(Long id) {
+//		postodao.OccupaPostoById(id);
+//	}
 
 	public PostoASedere findPostoById(Long id) {
 		return postodao.findPostoById(id);

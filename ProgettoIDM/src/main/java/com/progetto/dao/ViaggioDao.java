@@ -32,9 +32,9 @@ public class ViaggioDao {
 
 	@Autowired
 	HibernateTemplate hibernateTemplate;
-	
-	@Autowired
-	Viaggio viaggio;
+
+//	@Autowired
+//	Viaggio viaggio;
 	
 	@Autowired
 	TrenoService trenoservice;
@@ -48,10 +48,13 @@ public class ViaggioDao {
 	
 	@Transactional
 	public void addViaggio(LocalDateTime dataPartenza, LocalDateTime dataArrivo, String stazionePartenza, String stazioneDestinazione, String trenoId)  {
+		Viaggio viaggio = new Viaggio();
 		viaggio.setDataPartenza(dataPartenza);
 		viaggio.setDataArrivo(dataArrivo);
 		viaggio.setStazionePartenza(stazionePartenza);
 		viaggio.setStazioneDestinazione(stazioneDestinazione);
+		
+		
 		
 		trenoservice.getTrenoById(Long.parseLong(trenoId)).getListaViaggi().add(viaggio);
 	}
@@ -128,8 +131,8 @@ public class ViaggioDao {
 		      return treno;
 		   } 
 	
-	public void updatePrenotazione(Long idPrenotazione) {
-	    Long idViaggio = (Long) session.getAttribute("viaggioId");
+	public void updatePrenotazione(Long idPrenotazione, Long idViaggio) {
+	    
 	    Viaggio viaggio = findViaggioById(idViaggio);
 	    PrenotazionePosto prenotazione = prenotazioneservice.findPrenotazioneById(idPrenotazione);
 

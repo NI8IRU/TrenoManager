@@ -13,9 +13,9 @@
 
 		<h1>Login Form</h1>
 		
-		<c:if test="${not empty msg }">
-							<h5 class="text-success">${msg }</h5>
-							<c:remove var="msg" />
+		<c:if test="${not empty loggingMsg }">
+							<h5 class="text-danger">${loggingMsg }</h5>
+							<c:remove var="loggingMsg" />
 						</c:if>
 		<form action="login" method="post">
 

@@ -20,6 +20,9 @@ public class UtenteController {
 	@Autowired 
 	UtenteService utenteservice;
 	
+	@Autowired
+	HttpSession session;
+	
 	@GetMapping("addUtente")
 	public String addUtente() {
 		return "AddUtente";
@@ -44,11 +47,12 @@ public class UtenteController {
 	
 	@GetMapping("logout")
 	public String logout() {
+		session.removeAttribute("utenteLoggato");
 		return "homepage";
 	}
 	
 	@PostMapping("/login")
-	public String processLogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
+	public String processLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
 	    // verifico le credenziali dell'utente
 	    Utente utente = utenteservice.findUtenteByUsername(username);
 	    
@@ -56,10 +60,10 @@ public class UtenteController {
 	        // Le credenziali sono corrette, quindi registra l'utente nella sessione
 	        session.setAttribute("utenteLoggato", utente);
 //	        return "UtenteDashboard"; // Reindirizza a una pagina dopo il login
-	        return "homepage2";
+	        return "homepage";
 	    } else {
 	        // credenziali errate
-	    	session.setAttribute("msg", "Invalid data");
+	    	session.setAttribute("loggingMsg", "Invalid data");
 	        return "redirect:/loginUtente";
 	    	
 	    }
