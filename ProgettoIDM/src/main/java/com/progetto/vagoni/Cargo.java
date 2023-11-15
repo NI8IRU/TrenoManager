@@ -13,7 +13,7 @@ public class Cargo extends Vagone {
 	private Integer numeroPacchi;
 	private final String tipoVagone = "CARGO";
 
-	public Cargo(Integer id, String marca, double peso, double lunghezza, Colore colore,
+	public Cargo(Long id, String marca, double peso, double lunghezza, Colore colore,
 			Integer numeroMassimoPacchi, Integer numeroPacchi) {
 		super(id, marca, peso, lunghezza, colore);
 		this.numeroMassimoPacchi = numeroMassimoPacchi;

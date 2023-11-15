@@ -10,7 +10,7 @@ import com.progetto.vagoni.Cargo;
 @DiscriminatorValue("CARGO_FR")
 public class FRCargo extends Cargo {
 
-	public FRCargo(Integer id, String marca, double peso, double lunghezza, Colore colore,
+	public FRCargo(Long id, String marca, double peso, double lunghezza, Colore colore,
 			Integer numeroMassimoPacchi, Integer numeroPacchi) {
 		super(id, marca, peso, lunghezza, colore, numeroMassimoPacchi, numeroPacchi);
 	}

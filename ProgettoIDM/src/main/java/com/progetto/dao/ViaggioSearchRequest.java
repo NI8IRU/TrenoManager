@@ -1,5 +1,6 @@
 package com.progetto.dao;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
@@ -7,23 +8,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class ViaggioSearchRequest {
 
-	private LocalDateTime dataPartenza;
-	private LocalDateTime dataArrivo;
+	private LocalDate dataPartenza;
 	private String stazionePartenza;
 	private String stazioneDestinazione;
+	private String marca;
 	
-	public LocalDateTime getDataPartenza() {
+	public LocalDate getDataPartenza() {
 		return dataPartenza;
 	}
-	public void setDataPartenza(LocalDateTime dataPartenza) {
+	public void setDataPartenza(LocalDate dataPartenza) {
 		this.dataPartenza = dataPartenza;
 	}
-	public LocalDateTime getDataArrivo() {
-		return dataArrivo;
-	}
-	public void setDataArrivo(LocalDateTime dataArrivo) {
-		this.dataArrivo = dataArrivo;
-	}
+	
 	public String getStazionePartenza() {
 		return stazionePartenza;
 	}
@@ -35,6 +31,12 @@ public class ViaggioSearchRequest {
 	}
 	public void setStazioneDestinazione(String stazioneDestinazione) {
 		this.stazioneDestinazione = stazioneDestinazione;
+	}
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
 	}
 	
 	

@@ -1,0 +1,132 @@
+//transformString è una funzione che effettua vari controlli in modo tale da restituire, grazie alla funzione
+//calculateEditDistance e alla funzione soundex, la stringa presente all'interno di un array di stringhe, che più 
+//si avvicina alla stringa che si vuole controllare
+function transformString(stringa, listaPaesi) {
+  let finalString = listaPaesi[0];
+
+  for (let i = 0; i < listaPaesi.length; i++) {
+      if (calculateEditDistance(stringa, listaPaesi[i]) === calculateEditDistance(stringa, finalString)) {
+          let finalStringSoundex = soundex(finalString);
+          let paeseSoundex = soundex(listaPaesi[i]);
+          let stringaSoundex = soundex(stringa);
+
+          if (calculateEditDistance(stringaSoundex, finalStringSoundex) > calculateEditDistance(stringaSoundex, paeseSoundex)) {
+              finalString = paeseSoundex;
+          } else if (calculateEditDistance(stringaSoundex, finalStringSoundex) === calculateEditDistance(stringaSoundex, paeseSoundex)) {
+              console.log("possibile: " + listaPaesi[i]);
+          }
+      }
+
+      if (calculateEditDistance(stringa, listaPaesi[i]) < calculateEditDistance(stringa, finalString)) {
+          finalString = listaPaesi[i];
+      }
+  }
+
+  return finalString;
+}
+
+function soundex(s) {
+    let x = s.toUpperCase().split(''); // Converte la stringa in maiuscolo e la trasforma in un array di caratteri.
+    let firstLetter = x[0]; // Memorizza la prima lettera della parola.
+
+    // Converte le lettere in codice numerico
+    for (let i = 0; i < x.length; i++) {
+        switch (x[i]) {
+            case 'B':
+            case 'F':
+            case 'P':
+            case 'V':
+                x[i] = '1';
+                break;
+
+            case 'C':
+            case 'G':
+            case 'J':
+            case 'K':
+            case 'Q':
+            case 'S':
+            case 'X':
+            case 'Z':
+                x[i] = '2';
+                break;
+
+            case 'D':
+            case 'T':
+                x[i] = '3';
+                break;
+
+            case 'L':
+                x[i] = '4';
+                break;
+
+            case 'M':
+            case 'N':
+                x[i] = '5';
+                break;
+
+            case 'R':
+                x[i] = '6';
+                break;
+
+            default: // nel default avremo le lettere A, E, H, I, 0, W
+                x[i] = '0';
+                break;
+        }
+    }
+
+    // Rimuove i duplicati
+    let output = firstLetter; // Inizializza la stringa di output con la prima lettera.
+    for (let i = 1; i < x.length; i++) {
+        if (x[i] !== x[i - 1] && x[i] !== '0') {
+            output += x[i]; // Aggiunge i caratteri non duplicati diversi da '0' alla stringa di output.
+        }
+    }
+
+    // Aggiunge zeri alla fine o tronca la stringa
+    output = output + '0000'; // Aggiunge quattro zeri alla fine della stringa.
+    return output.substring(0, 4); // Restituisce i primi quattro caratteri della stringa di output.
+}
+
+// Esempio di utilizzo:
+let result = soundex('yourString');
+console.log(result);
+
+
+
+
+
+//la funzione calculateEditDistance è utilizzata all'interno di transformString
+//questa funzione è capace di trovare, ricevute in input due stringhe, l'editDistance, ovvero il numero minimo di
+//operazioni da effettuare sulla prima stringa per renderla uguale alla seconda
+function calculateEditDistance(str1, str2) {
+    let m = str1.length;
+    let n = str2.length;
+
+    let dp = new Array(m + 1).fill(0).map(() => new Array(n + 1).fill(0));
+
+    for (let i = 0; i <= m; i++) {
+        dp[i][0] = i;
+    }
+
+    for (let j = 0; j <= n; j++) {
+        dp[0][j] = j;
+    }
+
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+            if (str1.charAt(i - 1) === str2.charAt(j - 1)) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else {
+                let replace = dp[i - 1][j - 1] + 1;
+                let insert = dp[i][j - 1] + 1;
+                let deleteOp = dp[i - 1][j] + 1;
+                dp[i][j] = Math.min(Math.min(replace, insert), deleteOp);
+            }
+        }
+    }
+
+    return dp[m][n];
+}
+
+
+

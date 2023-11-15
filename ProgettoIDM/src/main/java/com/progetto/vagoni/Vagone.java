@@ -21,14 +21,14 @@ public abstract class Vagone {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String marca;
 	private double peso;
 	private double lunghezza;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Colore colore;
 
-	public Vagone(Integer id, String marca, double peso, double lunghezza, Colore colore) {
+	public Vagone(Long id, String marca, double peso, double lunghezza, Colore colore) {
 		this.id = id;
 		this.marca = marca;
 		this.peso = peso;
@@ -46,13 +46,13 @@ public abstract class Vagone {
 	public Vagone() {}
 	
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

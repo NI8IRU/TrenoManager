@@ -14,7 +14,7 @@ public class Locomotiva extends Vagone {
 	private Integer carburanteAttuale;
 	private final String tipoVagone = "LOCOMOTIVA";
 
-	public Locomotiva(Integer id, String marca, double peso, double lunghezza, Colore colore,
+	public Locomotiva(Long id, String marca, double peso, double lunghezza, Colore colore,
 			Integer potenzaMotore, Integer carburanteMassimo, Integer carburanteAttuale) {
 		super(id, marca, peso, lunghezza, colore);
 		this.potenzaMotore = potenzaMotore;
