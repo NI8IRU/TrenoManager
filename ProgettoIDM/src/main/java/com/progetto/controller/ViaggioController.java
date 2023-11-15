@@ -3,10 +3,7 @@ package com.progetto.controller;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.progetto.dao.ViaggioSearchDao;
 import com.progetto.dao.ViaggioSearchRequest;
 import com.progetto.model.PrenotazionePosto;
@@ -81,7 +77,7 @@ public class ViaggioController {
 		viaggioservice.addViaggio(dataPartenza, dataArrivo, stazionePartenza, stazioneDestinazione, idTreno);
 		
 		
-	    return "redirect:/viaggi";
+	    return "redirect:/PagineJspCanoniche/viewViaggi/viewViaggi";
 	}
 	
 	
@@ -90,7 +86,7 @@ public class ViaggioController {
 		m.addAttribute("viaggi", viaggioservice.getAllViaggi());
 //		session.removeAttribute("viaggioId");
 		
-		return "viaggi";
+		return "PagineJspCanoniche/viewViaggi/viewViaggi";
 	}
 	
 	//CriteriaQuery
@@ -121,7 +117,7 @@ public class ViaggioController {
 	        // Fai qualcosa con i risultati, ad esempio passali al model per essere visualizzati nella tua vista
 	        m.addAttribute("viaggiSearch", risultatiQuery);
 	        
-	        return "viaggi";
+	        return "PagineJspCanoniche/viewViaggi/viewViaggi";
 	    }
 	
 	@GetMapping("/prenotaPosto/{viaggioId}")
@@ -174,7 +170,7 @@ public class ViaggioController {
 				System.out.println("no");
 			}
 		}
-		return "postiview";
+		return "PagineJspCanoniche/scegliPosto/scegliPosto";
 	}
 	
 	@PostMapping("prenotaPosto/postiview/{viaggioId}/ConfermaPrenotazione")

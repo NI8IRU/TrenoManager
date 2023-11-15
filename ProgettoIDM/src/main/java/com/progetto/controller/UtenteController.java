@@ -37,7 +37,7 @@ public class UtenteController {
 	
 	@GetMapping("/loginUtente")
 	public String loginUtente() {
-		return "LoginUtente";
+		return "PagineJspCanoniche/login/login";
 	}
 	
 	@GetMapping("profilo")
@@ -48,7 +48,7 @@ public class UtenteController {
 	@GetMapping("logout")
 	public String logout() {
 		session.removeAttribute("utenteLoggato");
-		return "homepage";
+		return "PagineJspCanoniche/homePage/homePage";
 	}
 	
 	@PostMapping("/login")
@@ -60,7 +60,7 @@ public class UtenteController {
 	        // Le credenziali sono corrette, quindi registra l'utente nella sessione
 	        session.setAttribute("utenteLoggato", utente);
 //	        return "UtenteDashboard"; // Reindirizza a una pagina dopo il login
-	        return "homepage";
+	        return "PagineJspCanoniche/homePage/homePage";
 	    } else {
 	        // credenziali errate
 	    	session.setAttribute("loggingMsg", "Invalid data");

@@ -42,12 +42,12 @@ public class TrenoController {
 
 	@GetMapping("addTreni")
 	public String addTrenoAlf() {
-		return "AddTreni2";
+		return "PagineJspCanoniche/creaTreno/creaTreno";
 	}
 
-	@GetMapping("/")
+	@GetMapping("/home")
 	public String home() {
-		return "homepage";
+		return "PagineJspCanoniche/homePage/homePage";
 	}
 
 	@PostMapping("/AddTreni")
@@ -65,7 +65,7 @@ public class TrenoController {
 		System.out.println("Valore selezionato della marca: " + marca);
 		System.out.println("Valore inserito in ComposizioneTreno: " + composizioneTreno);
 
-		return "AddTreni2";
+		return "PagineJspCanoniche/creaTreno/creaTreno";
 	}
 
 	//////////////
@@ -91,7 +91,7 @@ public class TrenoController {
 		m.addAttribute("treni", trenoservice.getAllTreno());
 		System.out.println("lista treni" + trenoservice.getAllTreno());
 
-		return "Treni2";
+		return "PagineJspCanoniche/viewTreni/viewTreni";
 	}
 
 	@GetMapping("myTrain")
@@ -100,98 +100,4 @@ public class TrenoController {
 		m.addAttribute("treniPerUtente", trenoservice.getAllTrenoByUtenteId(utente.getId()));
 		return "treniPerUtenteView";
 	}
-	
-//	@GetMapping("/prenotaPosto/{id}")
-//	public String prenotaPosto(@PathVariable(value="id") Long id, Model m) {
-//		m.addAttribute("vagoni", trenoservice.getAllVagoniPasseggeriByTrenoId(id));
-//		return "ScegliVagone";
-//		
-//	}
-//	
-//	@GetMapping("prenotaPosto/postiview/{id}")
-//	public String postiview(@PathVariable(value="id") Long id, Model m) {
-//		m.addAttribute("posti", trenoservice.getAllPostiByVagoneId(id));
-//		return "postiview";
-//	}
-//	
-//	
-//	@PostMapping("prenotaPosto/postiview/ConfermaPrenotazione")
-//	public String confermaPrenotazione(@ModelAttribute("postiSelezionati") String posti) {
-//		
-//		// crea un array di stringhe nel quale va a inserire tutte le sotto stringhe della 
-//		// stringa originale
-//		String[] numberStrings = posti.split(",");
-//		
-//		PrenotazionePosto prenotazione = new PrenotazionePosto();
-//		prenotazioneservice.addPrenotazione(prenotazione, numberStrings);
-//		
-//		utenteservice.updatePrenotazioniUtente(prenotazione, prenotazione.getPrezzo());
-//
-//        for (int i = 0; i < numberStrings.length; i++) {
-//            	postoservice.OccupaPostoById(Long.parseLong(numberStrings[i]));    
-//        }
-//		
-//		System.out.println(posti);
-//		return "redirect:/";
-//	}
-
-//	@GetMapping("ConfermaPrenotazione")
-//	public String confermaPrenotazione() {
-//		return "ConfermaPrenotazione";
-//	}
-
-//	@GetMapping("/treniView")
-//	public String treniView() {
-//		return "treniView";
-//	}
-
-//	@GetMapping("addTreno")
-//	public String addTreno() {
-//		return "AddTreno";
-//	}
-//	
-//	@PostMapping("/insertTreno")
-//	public String insertTreno(@ModelAttribute("insertTreno") TrenoDTO treno) {
-//		trenoservice.addTreno(treno);
-////		return "redirect:/trenoReport";
-//		return "AddTreno";
-//	}
-
-//	@GetMapping("/employeeReport")
-//	public String loadEmployee(Model m) {
-//		m.addAttribute("employee", employeeService.getAllEmp());
-//		m.addAttribute("title", "Employee Report");
-//		
-//		return "EmployeeReport";
-//	}
-//	
-//	@GetMapping("/editEmployee/{id}")
-//	public String lodeEditForm(@PathVariable(value="id") Long id, Model m)
-//	{
-//		Employee emp=employeeService.getEmpById(id);
-//		
-//		System.out.println(emp);
-//		m.addAttribute("employee", emp);
-//		m.addAttribute("title", "Edit Employee");
-//		
-//		return "EditEmployee";
-//		
-//	}
-//	
-//	
-//	
-//	@PostMapping("/editEmployee/updateEmployee")
-//	public String updateEmp(@ModelAttribute("updateEmployee") Employee emp)
-//	{
-//		employeeService.updateEmp(emp);
-//		
-//		return "redirect:/employeeReport";
-//		
-//	}
-//	
-//	@GetMapping("/deleteEmployee/{id}")
-//	public String deleteEmployee(@PathVariable Long id) {
-//		employeeService.deleteEmp(id);
-//		return "redirect:/employeeReport";
-//	}
 }
