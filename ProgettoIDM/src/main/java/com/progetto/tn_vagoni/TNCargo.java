@@ -10,7 +10,7 @@ import com.progetto.vagoni.Cargo;
 @DiscriminatorValue("CARGO_TN")
 public class TNCargo extends Cargo {
 
-	public TNCargo(Integer id, String marca, double peso, double lunghezza, Colore colore,
+	public TNCargo(Long id, String marca, double peso, double lunghezza, Colore colore,
 			Integer numeroMassimoPacchi, Integer numeroPacchi) {
 		super(id, marca, peso, lunghezza, colore, numeroMassimoPacchi, numeroPacchi);
 	}

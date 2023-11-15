@@ -10,7 +10,7 @@ import com.progetto.vagoni.Locomotiva;
 @DiscriminatorValue("LOCOMOTIVA_FR")
 public class FRLocomotiva extends Locomotiva {
 
-	public FRLocomotiva(Integer id, String marca, double peso, double lunghezza, Colore colore,
+	public FRLocomotiva(Long id, String marca, double peso, double lunghezza, Colore colore,
 			Integer potenzaMotore, Integer carburanteMassimo, Integer carburanteAttuale) {
 		super(id, marca, peso, lunghezza, colore, potenzaMotore, carburanteMassimo, carburanteAttuale);
 	}

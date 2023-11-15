@@ -209,5 +209,29 @@ public class TrenoDAO {
 	public void deleteTreno(Long id) {
 		hibernateTemplate.delete(hibernateTemplate.load(Treno.class, id));
 	}
+	
+//	public Treno getTrenoByViaggioId(Long id) {
+//		Session session = factory.openSession();
+//		Transaction tx = null;
+//		Treno treno = null;
+//		try {
+//			tx = session.beginTransaction();
+//
+//			String hql = "from PostoASedere where VagoneId = :id";
+//			Query<Treno> query = session.createQuery(hql, PostoASedere.class);
+//
+//			query.setParameter("id", id);
+//
+//			treno = query.getSingleResult()
+//			tx.commit();
+//		} catch (HibernateException e) {
+//			if (tx != null)
+//				tx.rollback();
+//			e.printStackTrace();
+//		} finally {
+//			session.close();
+//		}
+//		return treno;
+//	}
 
 }

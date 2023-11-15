@@ -10,7 +10,7 @@ import com.progetto.vagoni.Ristorante;
 @DiscriminatorValue("RISTORANTE_FR")
 public class FRRistorante extends Ristorante {
 
-	public FRRistorante(Integer id,  String marca, double peso, double lunghezza, Colore colore,
+	public FRRistorante(Long id,  String marca, double peso, double lunghezza, Colore colore,
 			String stelleRistorante, String menu) {
 		super(id, marca, peso, lunghezza, colore, stelleRistorante, menu);
 	}

@@ -1,25 +1,24 @@
 package com.progetto.dao;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import org.hibernate.SessionFactory;
+
+import com.progetto.model.Treno;
 import com.progetto.model.Viaggio;
 
 @Repository
@@ -51,40 +50,61 @@ public class ViaggioSearchDao {
         return query.getResultList();
     }
 
+    //questo metodo cerca in base a 4 filtri i viaggi presenti nel db. Permette all'utente di poter lasciare 
+    //i campi dei filtri che non gli interessano vuoti; ma se aggiunge due o più filtri, verranno restituiti
+    //solo i viaggi che rispettano tutte le condizioni inserite
     public List<Viaggio> findAllByCriteria(ViaggioSearchRequest request) {
-    	Session session = factory.openSession();
+        // Apri una nuova sessione Hibernate
+        Session session = factory.openSession();
 
+        // Crea un oggetto CriteriaBuilder per costruire i criteri di query
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+
+        // Crea un oggetto CriteriaQuery specificando il tipo di risultato atteso (Viaggio.class)
         CriteriaQuery<Viaggio> criteriaQuery = criteriaBuilder.createQuery(Viaggio.class);
+
+        // Lista di predicati che verranno utilizzati nella clausola WHERE della query
         List<Predicate> predicates = new ArrayList<>();
 
-        Root<Viaggio> root = criteriaQuery.from(Viaggio.class);
+        // Ottieni il root della query, che rappresenta l'entità principale (Viaggio)
+        Root<Viaggio> viaggioRoot = criteriaQuery.from(Viaggio.class);
 
+        // Effettua una join con l'entità Treno usando il campo di join "treno"
+        Join<Viaggio, Treno> trenoJoin = viaggioRoot.join("treno");
+
+        // Aggiungi predicati per filtrare i risultati in base ai criteri di ricerca forniti
         if (request.getStazionePartenza() != null && !request.getStazionePartenza().trim().isEmpty()) {
+            // Aggiungi un predicato per la stazione di partenza
             Predicate stazionePartenzaPredicate = criteriaBuilder
-                    .like(root.get("stazionePartenza"), "%" + request.getStazionePartenza() + "%");
+                    .like(viaggioRoot.get("stazionePartenza"), "%" + request.getStazionePartenza() + "%");
             predicates.add(stazionePartenzaPredicate);
         }
 
-        if (request.getStazioneDestinazione()!= null && !request.getStazioneDestinazione().trim().isEmpty()) {
+        if (request.getStazioneDestinazione() != null && !request.getStazioneDestinazione().trim().isEmpty()) {
+            // Aggiungi un predicato per la stazione di destinazione
             Predicate stazioneDestinazionePredicate = criteriaBuilder
-                    .like(root.get("stazioneDestinazione"), "%" + request.getStazioneDestinazione() + "%");
+                    .like(viaggioRoot.get("stazioneDestinazione"), "%" + request.getStazioneDestinazione() + "%");
             predicates.add(stazioneDestinazionePredicate);
         }
-        
+
+        if (request.getMarca() != null && !request.getMarca().trim().isEmpty()) {
+            // Aggiungi un predicato per la marca del treno
+            Predicate marcaTrenoPredicate = criteriaBuilder
+                    .like(trenoJoin.get("marca"), "%" + request.getMarca() + "%");
+            predicates.add(marcaTrenoPredicate);
+        }
+
         if (request.getDataPartenza() != null) {
-            // Tronca la data all'inizio del giorno
-            LocalDateTime inizioGiornoDataPartenza = request.getDataPartenza().truncatedTo(ChronoUnit.DAYS);
+            // Filtraggio per data di partenza
+            LocalDate inizioGiornoDataPartenza = request.getDataPartenza();
+            LocalDate fineGiornoDataPartenza = inizioGiornoDataPartenza.plusDays(1);
 
-            // Tronca la data alla fine del giorno
-            LocalDateTime fineGiornoDataPartenza = inizioGiornoDataPartenza.plusDays(1);
-
-            // Crea il predicato per il giorno specifico
+            // Crea predicati per le date di partenza
             Predicate dataPartenzaPredicate = criteriaBuilder
-                    .greaterThanOrEqualTo(root.get("dataPartenza"), inizioGiornoDataPartenza);
+                    .greaterThanOrEqualTo(viaggioRoot.get("dataPartenza"), inizioGiornoDataPartenza.atStartOfDay());
 
             Predicate dataPartenzaEndPredicate = criteriaBuilder
-                    .lessThan(root.get("dataPartenza"), fineGiornoDataPartenza);
+                    .lessThan(viaggioRoot.get("dataPartenza"), fineGiornoDataPartenza.atStartOfDay());
 
             // Combina i due predicati usando un AND
             Predicate finalDataPartenzaPredicate = criteriaBuilder.and(dataPartenzaPredicate, dataPartenzaEndPredicate);
@@ -92,93 +112,14 @@ public class ViaggioSearchDao {
             predicates.add(finalDataPartenzaPredicate);
         }
 
+        // Combina tutti i predicati usando un AND e imposta la clausola WHERE nella query
+        criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
 
-
-        if (request.getDataArrivo() != null) {
-            // Tronca la data alla precisione del giorno
-        	LocalDateTime truncatedDataArrivo = request.getDataArrivo().truncatedTo(ChronoUnit.DAYS);
-
-            // Crea il predicato per data di arrivo
-            Predicate dataArrivoPredicate = criteriaBuilder
-                    .lessThanOrEqualTo(root.get("dataArrivo"), truncatedDataArrivo);
-
-            predicates.add(dataArrivoPredicate);
-        }
-
-        
-        criteriaQuery.where(criteriaBuilder.or(predicates.toArray(new Predicate[0])));
-
+        // Crea la query utilizzando il CriteriaQuery configurato
         Query<Viaggio> query = session.createQuery(criteriaQuery);
+
+        // Esegue la query e restituisce la lista dei risultati
         return query.getResultList();
     }
 }
 
-//@Repository
-//public class ViaggioSearchDao {
-//	
-//	private final EntityManager em; 
-//	
-//
-//	
-//	@Autowired
-//	public ViaggioSearchDao(EntityManager em) {
-//	    this.em = em;
-//	}
-//
-//	public List<Viaggio> findAllBySimpleQuery(String stazionePartenza, String stazioneDestinazione){
-//		
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		CriteriaQuery<Viaggio> criteriaQuery = criteriaBuilder.createQuery(Viaggio.class);
-//		
-//		//select * from Viaggio
-//		Root<Viaggio> root = criteriaQuery.from(Viaggio.class);
-//		
-//		//creazione clausola WHERE:
-//		//WHERE stazionePartenza like '%stringa%'
-//		Predicate stazionePartenzaPredicate = criteriaBuilder
-//				.like(root.get("stazionePartenza"), "%" + stazionePartenza + "%");
-//		
-//		Predicate stazioneDestinazionePredicate = criteriaBuilder
-//				.like(root.get("stazioneDestinazione"), "%" + stazioneDestinazione + "%");
-//		
-////		Predicate dataPartenzaPredicate = criteriaBuilder
-////				.like(root.get("dataPartenza"), "%" + dataPartenza + "%");
-////		
-////		Predicate dataArrivoPredicate = criteriaBuilder
-////				.like(root.get("dataArrivo"), "%" + dataArrivo + "%");
-//		
-//		Predicate orPredicate = criteriaBuilder.or(stazionePartenzaPredicate, stazioneDestinazionePredicate);
-//		
-//		criteriaQuery.where(orPredicate);
-//		
-//		TypedQuery<Viaggio> query = em.createQuery(criteriaQuery);
-//		
-//		return query.getResultList();
-//	}
-//	
-//	public List<Viaggio> findAllByCriteria(ViaggioSearchRequest request){
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		CriteriaQuery<Viaggio> criteriaQuery = criteriaBuilder.createQuery(Viaggio.class);
-//		List<Predicate> predicates = new ArrayList<>();
-//		
-//		//select from Viaggio
-//		Root<Viaggio> root = criteriaQuery.from(Viaggio.class);
-//		
-//		if(request.getStazionePartenza() != null) {
-//			Predicate stazionePartenzaPredicate = criteriaBuilder
-//					.like(root.get("stazionePartenza"), "%" + request.getStazionePartenza() + "%");
-//			predicates.add(stazionePartenzaPredicate);
-//		}
-//		
-//		if(request.getStazioneDestinazione() != null) {
-//			Predicate stazioneDestinazionePredicate = criteriaBuilder
-//					.like(root.get("stazioneDestinazione"), "%" + request.getStazioneDestinazione() + "%");
-//			predicates.add(stazioneDestinazionePredicate);
-//		}
-//		
-//		criteriaQuery.where(criteriaBuilder.or(predicates.toArray(new Predicate[0])));
-//		
-//		TypedQuery<Viaggio> query = em.createQuery(criteriaQuery);
-//		return query.getResultList();
-//	}
-//}

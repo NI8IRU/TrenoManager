@@ -25,7 +25,7 @@ public class Passeggeri extends Vagone {
 	private List<PostoASedere> listaPosti;
 	private final String tipoVagone = "PASSEGGERI";
 
-	public Passeggeri(Integer id, String marca, double peso, double lunghezza, Colore colore,
+	public Passeggeri(Long id, String marca, double peso, double lunghezza, Colore colore,
 			Integer numeroMassimoPasseggeri, Integer numeroPasseggeri) {
 		super(id, marca, peso, lunghezza, colore);
 		this.numeroMassimoPasseggeri = numeroMassimoPasseggeri;

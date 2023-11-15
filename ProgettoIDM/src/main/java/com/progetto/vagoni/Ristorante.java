@@ -13,7 +13,7 @@ public class Ristorante extends Vagone {
 	private String menu;
 	private final String tipoVagone = "RISTORANTE";
 
-	public Ristorante(Integer id, String marca, double peso, double lunghezza, Colore colore,
+	public Ristorante(Long id, String marca, double peso, double lunghezza, Colore colore,
 			String stelleRistorante, String menu) {
 		super(id, marca, peso, lunghezza, colore);
 		this.stelleRistorante = stelleRistorante;

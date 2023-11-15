@@ -13,7 +13,7 @@ import com.progetto.vagoni.PostoASedere;
 @DiscriminatorValue("PASSEGGERI_TN")
 public class TNPasseggeri extends Passeggeri {
 
-	public TNPasseggeri(Integer id, String marca, double peso, double lunghezza, Colore colore,
+	public TNPasseggeri(Long id, String marca, double peso, double lunghezza, Colore colore,
 			Integer numeroMassimoPasseggeri, Integer numeroPasseggeri) {
 		super(id, marca, peso, lunghezza, colore, numeroMassimoPasseggeri, numeroPasseggeri);
 	}

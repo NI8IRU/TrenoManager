@@ -1,5 +1,6 @@
 package com.progetto.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import com.progetto.service.PostoService;
 import com.progetto.service.PrenotazionePostoService;
 import com.progetto.service.TrenoService;
 import com.progetto.service.UtenteService;
+import com.progetto.service.VagoneService;
 import com.progetto.service.ViaggioService;
 import com.progetto.vagoni.PostoASedere;
 
@@ -61,6 +63,9 @@ public class ViaggioController {
 	
 	@Autowired
 	ViaggioSearchRequest viaggioRequest;
+	
+	@Autowired
+	VagoneService vagoneservice;
 
 	
 	@GetMapping("/createViaggio/{id}")
@@ -89,7 +94,7 @@ public class ViaggioController {
 	public String getAllViaggi(Model m) {
 		m.addAttribute("viaggi", viaggioservice.getAllViaggi());
 //		session.removeAttribute("viaggioId");
-		
+	
 		return "viaggi";
 	}
 	
@@ -99,15 +104,16 @@ public class ViaggioController {
 	    		Model m,
 	    		@RequestParam String stazionePartenza,
 	    		@RequestParam String stazioneDestinazione,
-	    		@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime dataPartenza,
-	    		@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime dataArrivo
+	    		@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataPartenza,
+	    		@RequestParam String marca
 	    		)
 		{
 	        
 	        viaggioRequest.setStazioneDestinazione(stazioneDestinazione);
 	        viaggioRequest.setStazionePartenza(stazionePartenza);
 	        viaggioRequest.setDataPartenza(dataPartenza);
-	        viaggioRequest.setDataArrivo(dataArrivo);
+	        viaggioRequest.setMarca(marca);
+	        
 	        
 
 	        List<Viaggio> risultatiQuery = viaggioSearchDao.
@@ -115,10 +121,10 @@ public class ViaggioController {
 
 	        for (Viaggio viaggio : risultatiQuery) {
 	            System.out.println("viaggio" + viaggio);
-	            // Aggiungi altre informazioni che vuoi stampare per ogni viaggio
+	            
 	        }
 	        System.out.println("stazioneDestinazione" + stazioneDestinazione);
-	        // Fai qualcosa con i risultati, ad esempio passali al model per essere visualizzati nella tua vista
+	       
 	        m.addAttribute("viaggiSearch", risultatiQuery);
 	        
 	        return "viaggi";
@@ -166,6 +172,7 @@ public class ViaggioController {
 
 		m.addAttribute("posti", trenoservice.getAllPostiByVagoneId(vagoneId));
 		m.addAttribute("postiOccupati", listaPostiId);
+		
 		
 		for(int i=0; i<trenoservice.getAllPostiByVagoneId(vagoneId).size(); i++) {
 			if(listaPostiId.contains(trenoservice.getAllPostiByVagoneId(vagoneId).get(i).getId())) {
